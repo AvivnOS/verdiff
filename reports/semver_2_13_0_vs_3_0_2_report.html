@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VerDiff Report: semver (2.13.0 vs 3.0.2)</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --panel: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+    --danger: #f85149;
+    --ok: #3fb950;
+    --warn: #d29922;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 2rem;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+  }
+  .container { max-width: 1180px; margin: 0 auto; }
+  h1, h2 { border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 0.75rem;
+    margin: 1.25rem 0 2rem;
+  }
+  .metric-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+  }
+  .metric-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; }
+  .metric-val { font-size: 1.35rem; font-weight: 600; margin-top: 0.25rem; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; background: var(--panel); border: 1px solid var(--border); }
+  th, td { text-align: left; padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+  th { color: var(--muted); font-weight: 600; background: #11151c; }
+  code, pre { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.86rem; }
+  pre { margin: 0; white-space: pre-wrap; word-break: break-all; }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .card-header { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .card-title { font-weight: 600; font-size: 1rem; }
+  .summary { color: var(--text); margin: 0.6rem 0; }
+  .grid-two { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 0.65rem; }
+  .box { background: #090d11; border: 1px solid var(--border); border-radius: 4px; padding: 0.65rem 0.8rem; }
+  .v1-box { border-left: 3px solid var(--ok); }
+  .v2-box { border-left: 3px solid var(--danger); }
+  .box-label { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.35rem; }
+  .tag {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    border: 1px solid var(--border);
+    background: #21262d;
+  }
+  .tag-drift { border-color: var(--danger); color: #ff7b72; }
+  .muted { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>VerDiff Differential Report: <code>semver</code> (<code>2.13.0</code> &rarr; <code>3.0.2</code>)</h1>
+  <div class="metrics">
+    <div class="metric-card"><div class="metric-label">Public Callables (v1/v2)</div><div class="metric-val">42 / 53</div></div>
+    <div class="metric-card"><div class="metric-label">Unchanged Signatures</div><div class="metric-val">13</div></div>
+    <div class="metric-card"><div class="metric-label">Static API Changes</div><div class="metric-val">29</div></div>
+    <div class="metric-card"><div class="metric-label">Callables Fuzzed</div><div class="metric-val">14</div></div>
+    <div class="metric-card"><div class="metric-label">Inputs Executed</div><div class="metric-val">490</div></div>
+    <div class="metric-card"><div class="metric-label">Behavioral Drifts</div><div class="metric-val" style="color: var(--danger);">6</div></div>
+  </div>
+  <h2>Static API Surface Changes (68)</h2>
+  <table><thead><tr><th>Kind</th><th>Module</th><th>Symbol</th><th>Details</th></tr></thead><tbody><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>semver</code></td><td><code>compare</code></td><td>parameter &#x27;ver1&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;ver2&#x27; type annotation changed (untyped -&gt; str); return annotation changed (untyped -&gt; int)</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>VersionInfo</code></td><td>Removed public class &#x27;semver.VersionInfo&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>VersionInfo.bump_build</code></td><td>Removed public method &#x27;semver.VersionInfo.bump_build&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>VersionInfo.bump_major</code></td><td>Removed public method &#x27;semver.VersionInfo.bump_major&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>VersionInfo.bump_minor</code></td><td>Removed public method &#x27;semver.VersionInfo.bump_minor&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>VersionInfo.bump_patch</code></td><td>Removed public method &#x27;semver.VersionInfo.bump_patch&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>VersionInfo.bump_prerelease</code></td><td>Removed public method &#x27;semver.VersionInfo.bump_prerelease&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>VersionInfo.compare</code></td><td>Removed public method &#x27;semver.VersionInfo.compare&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>VersionInfo.finalize_version</code></td><td>Removed public method &#x27;semver.VersionInfo.finalize_version&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>VersionInfo.isvalid</code></td><td>Removed public classmethod &#x27;semver.VersionInfo.isvalid&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>VersionInfo.match</code></td><td>Removed public method &#x27;semver.VersionInfo.match&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>VersionInfo.next_version</code></td><td>Removed public method &#x27;semver.VersionInfo.next_version&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>VersionInfo.parse</code></td><td>Removed public classmethod &#x27;semver.VersionInfo.parse&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>VersionInfo.replace</code></td><td>Removed public method &#x27;semver.VersionInfo.replace&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>VersionInfo.to_dict</code></td><td>Removed public method &#x27;semver.VersionInfo.to_dict&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>VersionInfo.to_tuple</code></td><td>Removed public method &#x27;semver.VersionInfo.to_tuple&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>b</code></td><td>Removed public function &#x27;semver.b&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>cmd_bump</code></td><td>Removed public function &#x27;semver.cmd_bump&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>cmd_check</code></td><td>Removed public function &#x27;semver.cmd_check&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>cmd_compare</code></td><td>Removed public function &#x27;semver.cmd_compare&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>cmd_nextver</code></td><td>Removed public function &#x27;semver.cmd_nextver&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>cmp</code></td><td>Removed public function &#x27;semver.cmp&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>comparator</code></td><td>Removed public function &#x27;semver.comparator&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>createparser</code></td><td>Removed public function &#x27;semver.createparser&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>deprecated</code></td><td>Removed public function &#x27;semver.deprecated&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>ensure_str</code></td><td>Removed public function &#x27;semver.ensure_str&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>main</code></td><td>Removed public function &#x27;semver.main&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>process</code></td><td>Removed public function &#x27;semver.process&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>semver</code></td><td><code>u</code></td><td>Removed public function &#x27;semver.u&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.cli</code></td><td><code>cmd_bump</code></td><td>Added public function &#x27;semver.cli.cmd_bump&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.cli</code></td><td><code>cmd_check</code></td><td>Added public function &#x27;semver.cli.cmd_check&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.cli</code></td><td><code>cmd_compare</code></td><td>Added public function &#x27;semver.cli.cmd_compare&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.cli</code></td><td><code>cmd_nextver</code></td><td>Added public function &#x27;semver.cli.cmd_nextver&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.cli</code></td><td><code>createparser</code></td><td>Added public function &#x27;semver.cli.createparser&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.cli</code></td><td><code>main</code></td><td>Added public function &#x27;semver.cli.main&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.cli</code></td><td><code>process</code></td><td>Added public function &#x27;semver.cli.process&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>Version</code></td><td>Added public class &#x27;semver.version.Version&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>Version.bump_build</code></td><td>Added public method &#x27;semver.version.Version.bump_build&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>Version.bump_major</code></td><td>Added public method &#x27;semver.version.Version.bump_major&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>Version.bump_minor</code></td><td>Added public method &#x27;semver.version.Version.bump_minor&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>Version.bump_patch</code></td><td>Added public method &#x27;semver.version.Version.bump_patch&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>Version.bump_prerelease</code></td><td>Added public method &#x27;semver.version.Version.bump_prerelease&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>Version.compare</code></td><td>Added public method &#x27;semver.version.Version.compare&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>Version.finalize_version</code></td><td>Added public method &#x27;semver.version.Version.finalize_version&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>Version.is_compatible</code></td><td>Added public method &#x27;semver.version.Version.is_compatible&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>Version.is_valid</code></td><td>Added public classmethod &#x27;semver.version.Version.is_valid&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>Version.match</code></td><td>Added public method &#x27;semver.version.Version.match&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>Version.next_version</code></td><td>Added public method &#x27;semver.version.Version.next_version&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>Version.parse</code></td><td>Added public classmethod &#x27;semver.version.Version.parse&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>Version.replace</code></td><td>Added public method &#x27;semver.version.Version.replace&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>Version.to_dict</code></td><td>Added public method &#x27;semver.version.Version.to_dict&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>Version.to_tuple</code></td><td>Added public method &#x27;semver.version.Version.to_tuple&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>VersionInfo</code></td><td>Added public class &#x27;semver.version.VersionInfo&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>VersionInfo.bump_build</code></td><td>Added public method &#x27;semver.version.VersionInfo.bump_build&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>VersionInfo.bump_major</code></td><td>Added public method &#x27;semver.version.VersionInfo.bump_major&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>VersionInfo.bump_minor</code></td><td>Added public method &#x27;semver.version.VersionInfo.bump_minor&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>VersionInfo.bump_patch</code></td><td>Added public method &#x27;semver.version.VersionInfo.bump_patch&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>VersionInfo.bump_prerelease</code></td><td>Added public method &#x27;semver.version.VersionInfo.bump_prerelease&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>VersionInfo.compare</code></td><td>Added public method &#x27;semver.version.VersionInfo.compare&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>VersionInfo.finalize_version</code></td><td>Added public method &#x27;semver.version.VersionInfo.finalize_version&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>VersionInfo.is_compatible</code></td><td>Added public method &#x27;semver.version.VersionInfo.is_compatible&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>VersionInfo.is_valid</code></td><td>Added public classmethod &#x27;semver.version.VersionInfo.is_valid&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>VersionInfo.match</code></td><td>Added public method &#x27;semver.version.VersionInfo.match&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>VersionInfo.next_version</code></td><td>Added public method &#x27;semver.version.VersionInfo.next_version&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>VersionInfo.parse</code></td><td>Added public classmethod &#x27;semver.version.VersionInfo.parse&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>VersionInfo.replace</code></td><td>Added public method &#x27;semver.version.VersionInfo.replace&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>VersionInfo.to_dict</code></td><td>Added public method &#x27;semver.version.VersionInfo.to_dict&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>semver.version</code></td><td><code>VersionInfo.to_tuple</code></td><td>Added public method &#x27;semver.version.VersionInfo.to_tuple&#x27;</td></tr></tbody></table>
+  <h2>Silent Behavioral Drifts (6)</h2>
+  
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#1 <code>semver.bump_build(version, token = &#x27;build&#x27;)</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return value drift: v1 returned &#x27;1.0.0+build.1&#x27; (builtins.str) != v2 returned &#x27;1.0.0+1&#x27; (builtins.str)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>bump_build(&#x27;1.0.0&#x27;, &#x27;&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>bump_build(&#x27;1.0.0&#x27;, &#x27;&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 2.13.0 Outcome</div>
+                      <pre><code>RETURN &#x27;1.0.0+build.1&#x27; (type: builtins.str)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 3.0.2 Outcome</div>
+                      <pre><code>RETURN &#x27;1.0.0+1&#x27; (type: builtins.str)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#2 <code>semver.bump_build(version, token = &#x27;build&#x27;)</code></span>
+                    <span class="tag tag-drift">exception_type_drift / fail_to_pass</span>
+                  </div>
+                  <p class="summary">v1 raised TypeError (can&#x27;t concat str to bytes), but v2 returned &quot;1.0.0+b&#x27;b&#x27;.1&quot; (builtins.str)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>bump_build(&#x27;1.0.0&#x27;, b&#x27;bytes&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (2 steps)</div>
+                      <pre><code>bump_build(&#x27;1.0.0&#x27;, b&#x27;b&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 2.13.0 Outcome</div>
+                      <pre><code>RAISE TypeError: can&#x27;t concat str to bytes</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 3.0.2 Outcome</div>
+                      <pre><code>RETURN &quot;1.0.0+b&#x27;b&#x27;.1&quot; (type: builtins.str)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#3 <code>semver.bump_prerelease(version, token = &#x27;rc&#x27;)</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return value drift: v1 returned &#x27;1.0.0-rc.1&#x27; (builtins.str) != v2 returned &#x27;1.0.0-1&#x27; (builtins.str)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>bump_prerelease(&#x27;1.0.0&#x27;, &#x27;&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>bump_prerelease(&#x27;1.0.0&#x27;, &#x27;&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 2.13.0 Outcome</div>
+                      <pre><code>RETURN &#x27;1.0.0-rc.1&#x27; (type: builtins.str)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 3.0.2 Outcome</div>
+                      <pre><code>RETURN &#x27;1.0.0-1&#x27; (type: builtins.str)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#4 <code>semver.bump_prerelease(version, token = &#x27;rc&#x27;)</code></span>
+                    <span class="tag tag-drift">exception_type_drift / fail_to_pass</span>
+                  </div>
+                  <p class="summary">v1 raised TypeError (can&#x27;t concat str to bytes), but v2 returned &quot;1.0.0-b&#x27;b&#x27;.1&quot; (builtins.str)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>bump_prerelease(&#x27;1.0.0&#x27;, b&#x27;bytes&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (2 steps)</div>
+                      <pre><code>bump_prerelease(&#x27;1.0.0&#x27;, b&#x27;b&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 2.13.0 Outcome</div>
+                      <pre><code>RAISE TypeError: can&#x27;t concat str to bytes</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 3.0.2 Outcome</div>
+                      <pre><code>RETURN &quot;1.0.0-b&#x27;b&#x27;.1&quot; (type: builtins.str)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#5 <code>semver.parse(version)</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return value drift: v1 returned OrderedDict({&#x27;major&#x27;: 1, &#x27;minor&#x27;: 0, &#x27;patch&#x27;: 0, &#x27;prerelease&#x27;: None, &#x27;build&#x27;: None}) (collections.OrderedDict) != v2 returned {&#x27;major&#x27;: 1, &#x27;minor&#x27;: 0, &#x27;patch&#x27;: 0, &#x27;prerelease&#x27;: None, &#x27;build&#x27;: None} (builtins.dict)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>baseline_required</code>)</div>
+                      <pre><code>parse(&#x27;1.0.0&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>parse(&#x27;1.0.0&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 2.13.0 Outcome</div>
+                      <pre><code>RETURN OrderedDict({&#x27;major&#x27;: 1, &#x27;minor&#x27;: 0, &#x27;patch&#x27;: 0, &#x27;prerelease&#x27;: None, &#x27;build&#x27;: None}) (type: collections.OrderedDict)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 3.0.2 Outcome</div>
+                      <pre><code>RETURN {&#x27;major&#x27;: 1, &#x27;minor&#x27;: 0, &#x27;patch&#x27;: 0, &#x27;prerelease&#x27;: None, &#x27;build&#x27;: None} (type: builtins.dict)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#6 <code>semver.parse_version_info(version)</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return value drift: v1 returned VersionInfo(major=1, minor=0, patch=0, prerelease=None, build=None) (semver.VersionInfo) != v2 returned Version(major=1, minor=0, patch=0, prerelease=None, build=None) (semver.version.Version)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>baseline_required</code>)</div>
+                      <pre><code>parse_version_info(&#x27;1.0.0&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>parse_version_info(&#x27;1.0.0&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 2.13.0 Outcome</div>
+                      <pre><code>RETURN VersionInfo(major=1, minor=0, patch=0, prerelease=None, build=None) (type: semver.VersionInfo)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 3.0.2 Outcome</div>
+                      <pre><code>RETURN Version(major=1, minor=0, patch=0, prerelease=None, build=None) (type: semver.version.Version)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+</div>
+</body>
+</html>

@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VerDiff Report: urllib3 (1.26.18 vs 2.0.7)</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --panel: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+    --danger: #f85149;
+    --ok: #3fb950;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 2rem;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+  }
+  .container { max-width: 1180px; margin: 0 auto; }
+  h1, h2 { border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.75rem;
+    margin: 1.25rem 0 2rem;
+  }
+  .metric-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+  }
+  .metric-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; }
+  .metric-val { font-size: 1.35rem; font-weight: 600; margin-top: 0.25rem; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; background: var(--panel); border: 1px solid var(--border); }
+  th, td { text-align: left; padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+  th { color: var(--muted); font-weight: 600; background: #11151c; }
+  code, pre { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.86rem; }
+  pre { margin: 0; white-space: pre-wrap; word-break: break-all; }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .card-header { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .card-title { font-weight: 600; font-size: 1rem; }
+  .summary { color: var(--text); margin: 0.6rem 0; }
+  .grid-two { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 0.65rem; }
+  .box { background: #090d11; border: 1px solid var(--border); border-radius: 4px; padding: 0.65rem 0.8rem; }
+  .v1-box { border-left: 3px solid var(--ok); }
+  .v2-box { border-left: 3px solid var(--danger); }
+  .box-label { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.35rem; }
+  .tag {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    border: 1px solid var(--border);
+    background: #21262d;
+  }
+  .tag-drift { border-color: var(--danger); color: #ff7b72; }
+  .muted { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>VerDiff Differential Report: <code>urllib3</code> (<code>1.26.18</code> &rarr; <code>2.0.7</code>)</h1>
+  <div class="metrics">
+    <div class="metric-card"><div class="metric-label">Public Callables (v1/v2)</div><div class="metric-val">268 / 246</div></div>
+    <div class="metric-card"><div class="metric-label">Unchanged Signatures</div><div class="metric-val">30</div></div>
+    <div class="metric-card"><div class="metric-label">Static API Changes</div><div class="metric-val">238</div></div>
+    <div class="metric-card"><div class="metric-label">Callables Fuzzed</div><div class="metric-val">120</div></div>
+    <div class="metric-card"><div class="metric-label">Inputs Executed</div><div class="metric-val">6971</div></div>
+    <div class="metric-card"><div class="metric-label">Noise Filtered</div><div class="metric-val">161</div></div>
+    <div class="metric-card"><div class="metric-label">Behavioral Drifts</div><div class="metric-val" style="color: var(--danger);">35</div></div>
+  </div>
+  <h2>Static API Surface Changes (274)</h2>
+  <table><thead><tr><th>Kind</th><th>Module</th><th>Symbol</th><th>Details</th></tr></thead><tbody><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3</code></td><td><code>add_stderr_logger</code></td><td>parameter &#x27;level&#x27; type annotation changed (untyped -&gt; int); return annotation changed (untyped -&gt; logging.StreamHandler[typing.TextIO])</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3</code></td><td><code>disable_warnings</code></td><td>parameter &#x27;category&#x27; type annotation changed (untyped -&gt; type[Warning]); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPConnection</code></td><td>parameter count changed (2 -&gt; 8)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPConnection.close</code></td><td>return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPConnection.connect</code></td><td>return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPConnection.getresponse</code></td><td>return annotation changed (untyped -&gt; HTTPResponse)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPConnection.putheader</code></td><td>parameter &#x27;header&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;values&#x27; type annotation changed (untyped -&gt; str); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPConnection.putrequest</code></td><td>parameter &#x27;method&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;url&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;args&#x27; renamed to &#x27;skip_host&#x27;; parameter &#x27;args&#x27; kind changed (VAR_POSITIONAL -&gt; POSITIONAL_OR_KEYWORD); parameter &#x27;args&#x27; default added; parameter &#x27;args&#x27; type annotation changed (untyped -&gt; bool); parameter &#x27;kwargs&#x27; renamed to &#x27;skip_accept_encoding&#x27;; parameter &#x27;kwargs&#x27; kind changed (VAR_KEYWORD -&gt; POSITIONAL_OR_KEYWORD); parameter &#x27;kwargs&#x27; default added; parameter &#x27;kwargs&#x27; type annotation changed (untyped -&gt; bool); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPConnection.request</code></td><td>parameter count changed (4 -&gt; 8); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPConnection.request_chunked</code></td><td>parameter &#x27;method&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;url&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;body&#x27; type annotation changed (untyped -&gt; _TYPE_BODY | None); parameter &#x27;headers&#x27; type annotation changed (untyped -&gt; typing.Mapping[str, str] | None); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPConnection.set_tunnel</code></td><td>parameter count changed (3 -&gt; 4); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPHeaderDict</code></td><td>parameter &#x27;headers&#x27; type annotation changed (untyped -&gt; ValidHTTPHeaderSource | None); parameter &#x27;kwargs&#x27; type annotation changed (untyped -&gt; str)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPHeaderDict.add</code></td><td>parameter count changed (2 -&gt; 3); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPHeaderDict.copy</code></td><td>return annotation changed (untyped -&gt; HTTPHeaderDict)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPHeaderDict.discard</code></td><td>parameter &#x27;key&#x27; type annotation changed (untyped -&gt; str); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPHeaderDict.extend</code></td><td>parameter &#x27;args&#x27; type annotation changed (untyped -&gt; ValidHTTPHeaderSource); parameter &#x27;kwargs&#x27; type annotation changed (untyped -&gt; str); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPHeaderDict.get_all</code></td><td>parameter &#x27;key&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;default&#x27; default value changed (&lt;object object at 0xADDR&gt; -&gt; &lt;_Sentinel.not_passed: 1&gt;); parameter &#x27;default&#x27; type annotation changed (untyped -&gt; _Sentinel | _DT); return annotation changed (untyped -&gt; list[str] | _DT)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPHeaderDict.getallmatchingheaders</code></td><td>parameter &#x27;key&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;default&#x27; default value changed (&lt;object object at 0xADDR&gt; -&gt; &lt;_Sentinel.not_passed: 1&gt;); parameter &#x27;default&#x27; type annotation changed (untyped -&gt; _Sentinel | _DT); return annotation changed (untyped -&gt; list[str] | _DT)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPHeaderDict.getheaders</code></td><td>parameter &#x27;key&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;default&#x27; default value changed (&lt;object object at 0xADDR&gt; -&gt; &lt;_Sentinel.not_passed: 1&gt;); parameter &#x27;default&#x27; type annotation changed (untyped -&gt; _Sentinel | _DT); return annotation changed (untyped -&gt; list[str] | _DT)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPHeaderDict.getlist</code></td><td>parameter &#x27;key&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;default&#x27; default value changed (&lt;object object at 0xADDR&gt; -&gt; &lt;_Sentinel.not_passed: 1&gt;); parameter &#x27;default&#x27; type annotation changed (untyped -&gt; _Sentinel | _DT); return annotation changed (untyped -&gt; list[str] | _DT)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPHeaderDict.iget</code></td><td>parameter &#x27;key&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;default&#x27; default value changed (&lt;object object at 0xADDR&gt; -&gt; &lt;_Sentinel.not_passed: 1&gt;); parameter &#x27;default&#x27; type annotation changed (untyped -&gt; _Sentinel | _DT); return annotation changed (untyped -&gt; list[str] | _DT)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPHeaderDict.items</code></td><td>return annotation changed (untyped -&gt; HTTPHeaderDictItemView)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPHeaderDict.iteritems</code></td><td>return annotation changed (untyped -&gt; typing.Iterator[tuple[str, str]])</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPHeaderDict.itermerged</code></td><td>return annotation changed (untyped -&gt; typing.Iterator[tuple[str, str]])</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPHeaderDict.setdefault</code></td><td>parameter &#x27;key&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;default&#x27; default value changed (None -&gt; &#x27;&#x27;); parameter &#x27;default&#x27; type annotation changed (untyped -&gt; str); return annotation changed (untyped -&gt; str)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPSConnection</code></td><td>parameter count changed (10 -&gt; 22)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPSConnection.close</code></td><td>return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPSConnection.connect</code></td><td>return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPSConnection.getresponse</code></td><td>return annotation changed (untyped -&gt; HTTPResponse)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPSConnection.putheader</code></td><td>parameter &#x27;header&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;values&#x27; type annotation changed (untyped -&gt; str); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPSConnection.putrequest</code></td><td>parameter &#x27;method&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;url&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;args&#x27; renamed to &#x27;skip_host&#x27;; parameter &#x27;args&#x27; kind changed (VAR_POSITIONAL -&gt; POSITIONAL_OR_KEYWORD); parameter &#x27;args&#x27; default added; parameter &#x27;args&#x27; type annotation changed (untyped -&gt; bool); parameter &#x27;kwargs&#x27; renamed to &#x27;skip_accept_encoding&#x27;; parameter &#x27;kwargs&#x27; kind changed (VAR_KEYWORD -&gt; POSITIONAL_OR_KEYWORD); parameter &#x27;kwargs&#x27; default added; parameter &#x27;kwargs&#x27; type annotation changed (untyped -&gt; bool); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPSConnection.request</code></td><td>parameter count changed (4 -&gt; 8); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPSConnection.request_chunked</code></td><td>parameter &#x27;method&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;url&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;body&#x27; type annotation changed (untyped -&gt; _TYPE_BODY | None); parameter &#x27;headers&#x27; type annotation changed (untyped -&gt; typing.Mapping[str, str] | None); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPSConnection.set_cert</code></td><td>parameter &#x27;key_file&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;cert_file&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;cert_reqs&#x27; type annotation changed (untyped -&gt; int | str | None); parameter &#x27;key_password&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;ca_certs&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;assert_hostname&#x27; type annotation changed (untyped -&gt; None | str | Literal[False]); parameter &#x27;assert_fingerprint&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;ca_cert_dir&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;ca_cert_data&#x27; type annotation changed (untyped -&gt; None | str | bytes); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPSConnection.set_tunnel</code></td><td>parameter count changed (3 -&gt; 4); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>VerifiedHTTPSConnection</code></td><td>parameter count changed (10 -&gt; 22)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>VerifiedHTTPSConnection.close</code></td><td>return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>VerifiedHTTPSConnection.connect</code></td><td>return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>VerifiedHTTPSConnection.getresponse</code></td><td>return annotation changed (untyped -&gt; HTTPResponse)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>VerifiedHTTPSConnection.putheader</code></td><td>parameter &#x27;header&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;values&#x27; type annotation changed (untyped -&gt; str); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>VerifiedHTTPSConnection.putrequest</code></td><td>parameter &#x27;method&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;url&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;args&#x27; renamed to &#x27;skip_host&#x27;; parameter &#x27;args&#x27; kind changed (VAR_POSITIONAL -&gt; POSITIONAL_OR_KEYWORD); parameter &#x27;args&#x27; default added; parameter &#x27;args&#x27; type annotation changed (untyped -&gt; bool); parameter &#x27;kwargs&#x27; renamed to &#x27;skip_accept_encoding&#x27;; parameter &#x27;kwargs&#x27; kind changed (VAR_KEYWORD -&gt; POSITIONAL_OR_KEYWORD); parameter &#x27;kwargs&#x27; default added; parameter &#x27;kwargs&#x27; type annotation changed (untyped -&gt; bool); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>VerifiedHTTPSConnection.request</code></td><td>parameter count changed (4 -&gt; 8); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>VerifiedHTTPSConnection.request_chunked</code></td><td>parameter &#x27;method&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;url&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;body&#x27; type annotation changed (untyped -&gt; _TYPE_BODY | None); parameter &#x27;headers&#x27; type annotation changed (untyped -&gt; typing.Mapping[str, str] | None); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>VerifiedHTTPSConnection.set_cert</code></td><td>parameter &#x27;key_file&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;cert_file&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;cert_reqs&#x27; type annotation changed (untyped -&gt; int | str | None); parameter &#x27;key_password&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;ca_certs&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;assert_hostname&#x27; type annotation changed (untyped -&gt; None | str | Literal[False]); parameter &#x27;assert_fingerprint&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;ca_cert_dir&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;ca_cert_data&#x27; type annotation changed (untyped -&gt; None | str | bytes); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>VerifiedHTTPSConnection.set_tunnel</code></td><td>parameter count changed (3 -&gt; 4); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connectionpool</code></td><td><code>ConnectionPool</code></td><td>parameter &#x27;host&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;port&#x27; type annotation changed (untyped -&gt; int | None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connectionpool</code></td><td><code>ConnectionPool.close</code></td><td>return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connectionpool</code></td><td><code>HTTPConnectionPool</code></td><td>parameter count changed (12 -&gt; 11)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connectionpool</code></td><td><code>HTTPConnectionPool.close</code></td><td>return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connectionpool</code></td><td><code>HTTPConnectionPool.is_same_host</code></td><td>parameter &#x27;url&#x27; type annotation changed (untyped -&gt; str); return annotation changed (untyped -&gt; bool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connectionpool</code></td><td><code>HTTPConnectionPool.request</code></td><td>parameter count changed (5 -&gt; 7); return annotation changed (untyped -&gt; BaseHTTPResponse)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connectionpool</code></td><td><code>HTTPConnectionPool.request_encode_body</code></td><td>parameter &#x27;method&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;url&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;fields&#x27; type annotation changed (untyped -&gt; _TYPE_FIELDS | None); parameter &#x27;headers&#x27; type annotation changed (untyped -&gt; typing.Mapping[str, str] | None); parameter &#x27;encode_multipart&#x27; type annotation changed (untyped -&gt; bool); parameter &#x27;multipart_boundary&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;urlopen_kw&#x27; type annotation changed (untyped -&gt; str); return annotation changed (untyped -&gt; BaseHTTPResponse)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connectionpool</code></td><td><code>HTTPConnectionPool.request_encode_url</code></td><td>parameter &#x27;method&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;url&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;fields&#x27; type annotation changed (untyped -&gt; _TYPE_ENCODE_URL_FIELDS | None); parameter &#x27;headers&#x27; type annotation changed (untyped -&gt; typing.Mapping[str, str] | None); parameter &#x27;urlopen_kw&#x27; type annotation changed (untyped -&gt; str); return annotation changed (untyped -&gt; BaseHTTPResponse)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connectionpool</code></td><td><code>HTTPConnectionPool.urlopen</code></td><td>parameter count changed (13 -&gt; 15); return annotation changed (untyped -&gt; BaseHTTPResponse)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connectionpool</code></td><td><code>HTTPSConnectionPool</code></td><td>parameter count changed (20 -&gt; 21)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connectionpool</code></td><td><code>HTTPSConnectionPool.close</code></td><td>return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connectionpool</code></td><td><code>HTTPSConnectionPool.is_same_host</code></td><td>parameter &#x27;url&#x27; type annotation changed (untyped -&gt; str); return annotation changed (untyped -&gt; bool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connectionpool</code></td><td><code>HTTPSConnectionPool.request</code></td><td>parameter count changed (5 -&gt; 7); return annotation changed (untyped -&gt; BaseHTTPResponse)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connectionpool</code></td><td><code>HTTPSConnectionPool.request_encode_body</code></td><td>parameter &#x27;method&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;url&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;fields&#x27; type annotation changed (untyped -&gt; _TYPE_FIELDS | None); parameter &#x27;headers&#x27; type annotation changed (untyped -&gt; typing.Mapping[str, str] | None); parameter &#x27;encode_multipart&#x27; type annotation changed (untyped -&gt; bool); parameter &#x27;multipart_boundary&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;urlopen_kw&#x27; type annotation changed (untyped -&gt; str); return annotation changed (untyped -&gt; BaseHTTPResponse)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connectionpool</code></td><td><code>HTTPSConnectionPool.request_encode_url</code></td><td>parameter &#x27;method&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;url&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;fields&#x27; type annotation changed (untyped -&gt; _TYPE_ENCODE_URL_FIELDS | None); parameter &#x27;headers&#x27; type annotation changed (untyped -&gt; typing.Mapping[str, str] | None); parameter &#x27;urlopen_kw&#x27; type annotation changed (untyped -&gt; str); return annotation changed (untyped -&gt; BaseHTTPResponse)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connectionpool</code></td><td><code>HTTPSConnectionPool.urlopen</code></td><td>parameter count changed (13 -&gt; 15); return annotation changed (untyped -&gt; BaseHTTPResponse)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connectionpool</code></td><td><code>connection_from_url</code></td><td>parameter &#x27;url&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;kw&#x27; type annotation changed (untyped -&gt; typing.Any); return annotation changed (untyped -&gt; HTTPConnectionPool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.fields</code></td><td><code>RequestField</code></td><td>parameter &#x27;name&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;data&#x27; type annotation changed (untyped -&gt; _TYPE_FIELD_VALUE); parameter &#x27;filename&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;headers&#x27; type annotation changed (untyped -&gt; typing.Mapping[str, str] | None); parameter &#x27;header_formatter&#x27; default value changed (&lt;function format_header_param_html5 at 0xADDR&gt; -&gt; None); parameter &#x27;header_formatter&#x27; type annotation changed (untyped -&gt; typing.Callable[[str, _TYPE_FIELD_VALUE], str] | None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.fields</code></td><td><code>RequestField.from_tuples</code></td><td>parameter &#x27;fieldname&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;value&#x27; type annotation changed (untyped -&gt; _TYPE_FIELD_VALUE_TUPLE); parameter &#x27;header_formatter&#x27; default value changed (&lt;function format_header_param_html5 at 0xADDR&gt; -&gt; None); parameter &#x27;header_formatter&#x27; type annotation changed (untyped -&gt; typing.Callable[[str, _TYPE_FIELD_VALUE], str] | None); return annotation changed (untyped -&gt; RequestField)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.fields</code></td><td><code>RequestField.make_multipart</code></td><td>parameter &#x27;content_disposition&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;content_type&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;content_location&#x27; type annotation changed (untyped -&gt; str | None); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.fields</code></td><td><code>RequestField.render_headers</code></td><td>return annotation changed (untyped -&gt; str)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.fields</code></td><td><code>format_header_param</code></td><td>parameter &#x27;name&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;value&#x27; type annotation changed (untyped -&gt; _TYPE_FIELD_VALUE); return annotation changed (untyped -&gt; str)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.fields</code></td><td><code>format_header_param_html5</code></td><td>parameter &#x27;name&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;value&#x27; type annotation changed (untyped -&gt; _TYPE_FIELD_VALUE); return annotation changed (untyped -&gt; str)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.fields</code></td><td><code>format_header_param_rfc2231</code></td><td>parameter &#x27;name&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;value&#x27; type annotation changed (untyped -&gt; _TYPE_FIELD_VALUE); return annotation changed (untyped -&gt; str)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.fields</code></td><td><code>guess_content_type</code></td><td>parameter &#x27;filename&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;default&#x27; type annotation changed (untyped -&gt; str); return annotation changed (untyped -&gt; str)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.filepost</code></td><td><code>choose_boundary</code></td><td>return annotation changed (untyped -&gt; str)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.filepost</code></td><td><code>encode_multipart_formdata</code></td><td>parameter &#x27;fields&#x27; type annotation changed (untyped -&gt; _TYPE_FIELDS); parameter &#x27;boundary&#x27; type annotation changed (untyped -&gt; str | None); return annotation changed (untyped -&gt; tuple[bytes, str])</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.filepost</code></td><td><code>iter_field_objects</code></td><td>parameter &#x27;fields&#x27; type annotation changed (untyped -&gt; _TYPE_FIELDS); return annotation changed (untyped -&gt; typing.Iterable[RequestField])</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.poolmanager</code></td><td><code>PoolKey</code></td><td>parameter count changed (26 -&gt; 28)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.poolmanager</code></td><td><code>PoolManager</code></td><td>parameter &#x27;num_pools&#x27; type annotation changed (untyped -&gt; int); parameter &#x27;headers&#x27; type annotation changed (untyped -&gt; typing.Mapping[str, str] | None); parameter &#x27;connection_pool_kw&#x27; type annotation changed (untyped -&gt; typing.Any)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.poolmanager</code></td><td><code>PoolManager.clear</code></td><td>return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.poolmanager</code></td><td><code>PoolManager.connection_from_context</code></td><td>parameter &#x27;request_context&#x27; type annotation changed (untyped -&gt; dict[str, typing.Any]); return annotation changed (untyped -&gt; HTTPConnectionPool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.poolmanager</code></td><td><code>PoolManager.connection_from_host</code></td><td>parameter &#x27;host&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;port&#x27; type annotation changed (untyped -&gt; int | None); parameter &#x27;scheme&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;pool_kwargs&#x27; type annotation changed (untyped -&gt; dict[str, typing.Any] | None); return annotation changed (untyped -&gt; HTTPConnectionPool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.poolmanager</code></td><td><code>PoolManager.connection_from_pool_key</code></td><td>parameter &#x27;pool_key&#x27; type annotation changed (untyped -&gt; PoolKey); parameter &#x27;request_context&#x27; default removed; parameter &#x27;request_context&#x27; type annotation changed (untyped -&gt; dict[str, typing.Any]); return annotation changed (untyped -&gt; HTTPConnectionPool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.poolmanager</code></td><td><code>PoolManager.connection_from_url</code></td><td>parameter &#x27;url&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;pool_kwargs&#x27; type annotation changed (untyped -&gt; dict[str, typing.Any] | None); return annotation changed (untyped -&gt; HTTPConnectionPool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.poolmanager</code></td><td><code>PoolManager.request</code></td><td>parameter count changed (5 -&gt; 7); return annotation changed (untyped -&gt; BaseHTTPResponse)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.poolmanager</code></td><td><code>PoolManager.request_encode_body</code></td><td>parameter &#x27;method&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;url&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;fields&#x27; type annotation changed (untyped -&gt; _TYPE_FIELDS | None); parameter &#x27;headers&#x27; type annotation changed (untyped -&gt; typing.Mapping[str, str] | None); parameter &#x27;encode_multipart&#x27; type annotation changed (untyped -&gt; bool); parameter &#x27;multipart_boundary&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;urlopen_kw&#x27; type annotation changed (untyped -&gt; str); return annotation changed (untyped -&gt; BaseHTTPResponse)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.poolmanager</code></td><td><code>PoolManager.request_encode_url</code></td><td>parameter &#x27;method&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;url&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;fields&#x27; type annotation changed (untyped -&gt; _TYPE_ENCODE_URL_FIELDS | None); parameter &#x27;headers&#x27; type annotation changed (untyped -&gt; typing.Mapping[str, str] | None); parameter &#x27;urlopen_kw&#x27; type annotation changed (untyped -&gt; str); return annotation changed (untyped -&gt; BaseHTTPResponse)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.poolmanager</code></td><td><code>PoolManager.urlopen</code></td><td>parameter &#x27;method&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;url&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;redirect&#x27; type annotation changed (untyped -&gt; bool); parameter &#x27;kw&#x27; type annotation changed (untyped -&gt; typing.Any); return annotation changed (untyped -&gt; BaseHTTPResponse)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.poolmanager</code></td><td><code>ProxyManager</code></td><td>parameter count changed (7 -&gt; 9)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.poolmanager</code></td><td><code>ProxyManager.clear</code></td><td>return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.poolmanager</code></td><td><code>ProxyManager.connection_from_context</code></td><td>parameter &#x27;request_context&#x27; type annotation changed (untyped -&gt; dict[str, typing.Any]); return annotation changed (untyped -&gt; HTTPConnectionPool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.poolmanager</code></td><td><code>ProxyManager.connection_from_host</code></td><td>parameter &#x27;host&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;port&#x27; type annotation changed (untyped -&gt; int | None); parameter &#x27;scheme&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;pool_kwargs&#x27; type annotation changed (untyped -&gt; dict[str, typing.Any] | None); return annotation changed (untyped -&gt; HTTPConnectionPool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.poolmanager</code></td><td><code>ProxyManager.connection_from_pool_key</code></td><td>parameter &#x27;pool_key&#x27; type annotation changed (untyped -&gt; PoolKey); parameter &#x27;request_context&#x27; default removed; parameter &#x27;request_context&#x27; type annotation changed (untyped -&gt; dict[str, typing.Any]); return annotation changed (untyped -&gt; HTTPConnectionPool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.poolmanager</code></td><td><code>ProxyManager.connection_from_url</code></td><td>parameter &#x27;url&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;pool_kwargs&#x27; type annotation changed (untyped -&gt; dict[str, typing.Any] | None); return annotation changed (untyped -&gt; HTTPConnectionPool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.poolmanager</code></td><td><code>ProxyManager.request</code></td><td>parameter count changed (5 -&gt; 7); return annotation changed (untyped -&gt; BaseHTTPResponse)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.poolmanager</code></td><td><code>ProxyManager.request_encode_body</code></td><td>parameter &#x27;method&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;url&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;fields&#x27; type annotation changed (untyped -&gt; _TYPE_FIELDS | None); parameter &#x27;headers&#x27; type annotation changed (untyped -&gt; typing.Mapping[str, str] | None); parameter &#x27;encode_multipart&#x27; type annotation changed (untyped -&gt; bool); parameter &#x27;multipart_boundary&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;urlopen_kw&#x27; type annotation changed (untyped -&gt; str); return annotation changed (untyped -&gt; BaseHTTPResponse)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.poolmanager</code></td><td><code>ProxyManager.request_encode_url</code></td><td>parameter &#x27;method&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;url&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;fields&#x27; type annotation changed (untyped -&gt; _TYPE_ENCODE_URL_FIELDS | None); parameter &#x27;headers&#x27; type annotation changed (untyped -&gt; typing.Mapping[str, str] | None); parameter &#x27;urlopen_kw&#x27; type annotation changed (untyped -&gt; str); return annotation changed (untyped -&gt; BaseHTTPResponse)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.poolmanager</code></td><td><code>ProxyManager.urlopen</code></td><td>parameter &#x27;method&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;url&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;redirect&#x27; type annotation changed (untyped -&gt; bool); parameter &#x27;kw&#x27; type annotation changed (untyped -&gt; typing.Any); return annotation changed (untyped -&gt; BaseHTTPResponse)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.poolmanager</code></td><td><code>proxy_from_url</code></td><td>parameter &#x27;url&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;kw&#x27; type annotation changed (untyped -&gt; typing.Any); return annotation changed (untyped -&gt; ProxyManager)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.response</code></td><td><code>DeflateDecoder.decompress</code></td><td>parameter &#x27;data&#x27; type annotation changed (untyped -&gt; bytes); return annotation changed (untyped -&gt; bytes)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.response</code></td><td><code>GzipDecoder.decompress</code></td><td>parameter &#x27;data&#x27; type annotation changed (untyped -&gt; bytes); return annotation changed (untyped -&gt; bytes)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.response</code></td><td><code>HTTPResponse</code></td><td>parameter count changed (17 -&gt; 16)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.response</code></td><td><code>HTTPResponse.close</code></td><td>return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.response</code></td><td><code>HTTPResponse.drain_conn</code></td><td>return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.response</code></td><td><code>HTTPResponse.fileno</code></td><td>return annotation changed (untyped -&gt; int)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.response</code></td><td><code>HTTPResponse.flush</code></td><td>return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.response</code></td><td><code>HTTPResponse.get_redirect_location</code></td><td>return annotation changed (untyped -&gt; str | None | Literal[False])</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.response</code></td><td><code>HTTPResponse.getheader</code></td><td>parameter &#x27;name&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;default&#x27; type annotation changed (untyped -&gt; str | None); return annotation changed (untyped -&gt; str | None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.response</code></td><td><code>HTTPResponse.getheaders</code></td><td>return annotation changed (untyped -&gt; HTTPHeaderDict)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.response</code></td><td><code>HTTPResponse.geturl</code></td><td>return annotation changed (untyped -&gt; str | None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.response</code></td><td><code>HTTPResponse.info</code></td><td>return annotation changed (untyped -&gt; HTTPHeaderDict)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.response</code></td><td><code>HTTPResponse.isclosed</code></td><td>return annotation changed (untyped -&gt; bool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.response</code></td><td><code>HTTPResponse.read</code></td><td>parameter &#x27;amt&#x27; type annotation changed (untyped -&gt; int | None); parameter &#x27;decode_content&#x27; type annotation changed (untyped -&gt; bool | None); parameter &#x27;cache_content&#x27; type annotation changed (untyped -&gt; bool); return annotation changed (untyped -&gt; bytes)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.response</code></td><td><code>HTTPResponse.read_chunked</code></td><td>parameter &#x27;amt&#x27; type annotation changed (untyped -&gt; int | None); parameter &#x27;decode_content&#x27; type annotation changed (untyped -&gt; bool | None); return annotation changed (untyped -&gt; typing.Generator[bytes, None, None])</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.response</code></td><td><code>HTTPResponse.readable</code></td><td>return annotation changed (untyped -&gt; bool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.response</code></td><td><code>HTTPResponse.readinto</code></td><td>parameter &#x27;b&#x27; type annotation changed (untyped -&gt; bytearray); return annotation changed (untyped -&gt; int)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.response</code></td><td><code>HTTPResponse.release_conn</code></td><td>return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.response</code></td><td><code>HTTPResponse.stream</code></td><td>parameter &#x27;amt&#x27; type annotation changed (untyped -&gt; int | None); parameter &#x27;decode_content&#x27; type annotation changed (untyped -&gt; bool | None); return annotation changed (untyped -&gt; typing.Generator[bytes, None, None])</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.response</code></td><td><code>HTTPResponse.supports_chunked_reads</code></td><td>return annotation changed (untyped -&gt; bool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.response</code></td><td><code>HTTPResponse.tell</code></td><td>return annotation changed (untyped -&gt; int)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.response</code></td><td><code>MultiDecoder</code></td><td>parameter &#x27;modes&#x27; type annotation changed (untyped -&gt; str)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.response</code></td><td><code>MultiDecoder.decompress</code></td><td>parameter &#x27;data&#x27; type annotation changed (untyped -&gt; bytes); return annotation changed (untyped -&gt; bytes)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.response</code></td><td><code>MultiDecoder.flush</code></td><td>return annotation changed (untyped -&gt; bytes)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.connection</code></td><td><code>allowed_gai_family</code></td><td>return annotation changed (untyped -&gt; socket.AddressFamily)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.connection</code></td><td><code>create_connection</code></td><td>parameter &#x27;address&#x27; type annotation changed (untyped -&gt; tuple[str, int]); parameter &#x27;timeout&#x27; default value changed (&lt;object object at 0xADDR&gt; -&gt; &lt;_TYPE_DEFAULT.token: -1&gt;); parameter &#x27;timeout&#x27; type annotation changed (untyped -&gt; _TYPE_TIMEOUT); parameter &#x27;source_address&#x27; type annotation changed (untyped -&gt; tuple[str, int] | None); parameter &#x27;socket_options&#x27; type annotation changed (untyped -&gt; _TYPE_SOCKET_OPTIONS | None); return annotation changed (untyped -&gt; socket.socket)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.connection</code></td><td><code>is_connection_dropped</code></td><td>parameter &#x27;conn&#x27; type annotation changed (untyped -&gt; BaseHTTPConnection); return annotation changed (untyped -&gt; bool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.proxy</code></td><td><code>connection_requires_http_tunnel</code></td><td>parameter &#x27;proxy_url&#x27; type annotation changed (untyped -&gt; Url | None); parameter &#x27;proxy_config&#x27; type annotation changed (untyped -&gt; ProxyConfig | None); parameter &#x27;destination_scheme&#x27; type annotation changed (untyped -&gt; str | None); return annotation changed (untyped -&gt; bool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.request</code></td><td><code>make_headers</code></td><td>parameter &#x27;keep_alive&#x27; type annotation changed (untyped -&gt; bool | None); parameter &#x27;accept_encoding&#x27; type annotation changed (untyped -&gt; bool | list[str] | str | None); parameter &#x27;user_agent&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;basic_auth&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;proxy_basic_auth&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;disable_cache&#x27; type annotation changed (untyped -&gt; bool | None); return annotation changed (untyped -&gt; dict[str, str])</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.request</code></td><td><code>rewind_body</code></td><td>parameter &#x27;body&#x27; type annotation changed (untyped -&gt; typing.IO[typing.AnyStr]); parameter &#x27;body_pos&#x27; type annotation changed (untyped -&gt; _TYPE_BODY_POSITION); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.request</code></td><td><code>set_file_position</code></td><td>parameter &#x27;body&#x27; type annotation changed (untyped -&gt; typing.Any); parameter &#x27;pos&#x27; type annotation changed (untyped -&gt; _TYPE_BODY_POSITION | None); return annotation changed (untyped -&gt; _TYPE_BODY_POSITION | None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.response</code></td><td><code>assert_header_parsing</code></td><td>parameter &#x27;headers&#x27; type annotation changed (untyped -&gt; httplib.HTTPMessage); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.response</code></td><td><code>is_fp_closed</code></td><td>parameter &#x27;obj&#x27; type annotation changed (untyped -&gt; object); return annotation changed (untyped -&gt; bool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.response</code></td><td><code>is_response_to_head</code></td><td>parameter &#x27;response&#x27; type annotation changed (untyped -&gt; httplib.HTTPResponse); return annotation changed (untyped -&gt; bool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.retry</code></td><td><code>RequestHistory</code></td><td>parameter &#x27;method&#x27; type annotation changed (untyped -&gt; ForwardRef(&#x27;str | None&#x27;)); parameter &#x27;url&#x27; type annotation changed (untyped -&gt; ForwardRef(&#x27;str | None&#x27;)); parameter &#x27;error&#x27; type annotation changed (untyped -&gt; ForwardRef(&#x27;Exception | None&#x27;)); parameter &#x27;status&#x27; type annotation changed (untyped -&gt; ForwardRef(&#x27;int | None&#x27;)); parameter &#x27;redirect_location&#x27; type annotation changed (untyped -&gt; ForwardRef(&#x27;str | None&#x27;))</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.retry</code></td><td><code>Retry</code></td><td>parameter count changed (15 -&gt; 16)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.retry</code></td><td><code>Retry.from_int</code></td><td>parameter &#x27;retries&#x27; type annotation changed (untyped -&gt; Retry | bool | int | None); parameter &#x27;redirect&#x27; type annotation changed (untyped -&gt; bool | int | None); parameter &#x27;default&#x27; type annotation changed (untyped -&gt; Retry | bool | int | None); return annotation changed (untyped -&gt; Retry)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.retry</code></td><td><code>Retry.get_backoff_time</code></td><td>return annotation changed (untyped -&gt; float)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.retry</code></td><td><code>Retry.get_retry_after</code></td><td>parameter &#x27;response&#x27; type annotation changed (untyped -&gt; BaseHTTPResponse); return annotation changed (untyped -&gt; float | None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.retry</code></td><td><code>Retry.increment</code></td><td>parameter &#x27;method&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;url&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;response&#x27; type annotation changed (untyped -&gt; BaseHTTPResponse | None); parameter &#x27;error&#x27; type annotation changed (untyped -&gt; Exception | None); parameter &#x27;_pool&#x27; type annotation changed (untyped -&gt; ConnectionPool | None); parameter &#x27;_stacktrace&#x27; type annotation changed (untyped -&gt; TracebackType | None); return annotation changed (untyped -&gt; Retry)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.retry</code></td><td><code>Retry.is_exhausted</code></td><td>return annotation changed (untyped -&gt; bool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.retry</code></td><td><code>Retry.is_retry</code></td><td>parameter &#x27;method&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;status_code&#x27; type annotation changed (untyped -&gt; int); parameter &#x27;has_retry_after&#x27; type annotation changed (untyped -&gt; bool); return annotation changed (untyped -&gt; bool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.retry</code></td><td><code>Retry.new</code></td><td>parameter &#x27;kw&#x27; type annotation changed (untyped -&gt; typing.Any); return annotation changed (untyped -&gt; Retry)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.retry</code></td><td><code>Retry.parse_retry_after</code></td><td>parameter &#x27;retry_after&#x27; type annotation changed (untyped -&gt; str); return annotation changed (untyped -&gt; float)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.retry</code></td><td><code>Retry.sleep_for_retry</code></td><td>parameter &#x27;response&#x27; default removed; parameter &#x27;response&#x27; type annotation changed (untyped -&gt; BaseHTTPResponse); return annotation changed (untyped -&gt; bool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.ssl_</code></td><td><code>assert_fingerprint</code></td><td>parameter &#x27;cert&#x27; type annotation changed (untyped -&gt; bytes | None); parameter &#x27;fingerprint&#x27; type annotation changed (untyped -&gt; str); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.ssl_</code></td><td><code>create_urllib3_context</code></td><td>parameter count changed (4 -&gt; 6); return annotation changed (untyped -&gt; ssl.SSLContext)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.ssl_</code></td><td><code>is_ipaddress</code></td><td>parameter &#x27;hostname&#x27; type annotation changed (untyped -&gt; str | bytes); return annotation changed (untyped -&gt; bool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.ssl_</code></td><td><code>resolve_cert_reqs</code></td><td>parameter &#x27;candidate&#x27; type annotation changed (untyped -&gt; None | int | str); return annotation changed (untyped -&gt; VerifyMode)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.ssl_</code></td><td><code>resolve_ssl_version</code></td><td>parameter &#x27;candidate&#x27; type annotation changed (untyped -&gt; None | int | str); return annotation changed (untyped -&gt; int)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.ssl_</code></td><td><code>ssl_wrap_socket</code></td><td>parameter &#x27;sock&#x27; type annotation changed (untyped -&gt; socket.socket); parameter &#x27;keyfile&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;certfile&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;cert_reqs&#x27; type annotation changed (untyped -&gt; int | None); parameter &#x27;ca_certs&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;server_hostname&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;ssl_version&#x27; type annotation changed (untyped -&gt; int | None); parameter &#x27;ciphers&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;ssl_context&#x27; type annotation changed (untyped -&gt; ssl.SSLContext | None); parameter &#x27;ca_cert_dir&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;key_password&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;ca_cert_data&#x27; type annotation changed (untyped -&gt; None | str | bytes); parameter &#x27;tls_in_tls&#x27; type annotation changed (untyped -&gt; bool); return annotation changed (untyped -&gt; ssl.SSLSocket | SSLTransportType)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.ssl_match_hostname</code></td><td><code>match_hostname</code></td><td>parameter count changed (2 -&gt; 3); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.ssltransport</code></td><td><code>SSLTransport</code></td><td>parameter &#x27;socket&#x27; type annotation changed (untyped -&gt; socket.socket); parameter &#x27;ssl_context&#x27; type annotation changed (untyped -&gt; ssl.SSLContext); parameter &#x27;server_hostname&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;suppress_ragged_eofs&#x27; type annotation changed (untyped -&gt; bool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.ssltransport</code></td><td><code>SSLTransport.cipher</code></td><td>return annotation changed (untyped -&gt; tuple[str, str, int] | None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.ssltransport</code></td><td><code>SSLTransport.close</code></td><td>return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.ssltransport</code></td><td><code>SSLTransport.compression</code></td><td>return annotation changed (untyped -&gt; str | None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.ssltransport</code></td><td><code>SSLTransport.fileno</code></td><td>return annotation changed (untyped -&gt; int)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.ssltransport</code></td><td><code>SSLTransport.getpeercert</code></td><td>parameter &#x27;binary_form&#x27; type annotation changed (untyped -&gt; bool); return annotation changed (untyped -&gt; _TYPE_PEER_CERT_RET)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.ssltransport</code></td><td><code>SSLTransport.gettimeout</code></td><td>return annotation changed (untyped -&gt; float | None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.ssltransport</code></td><td><code>SSLTransport.makefile</code></td><td>parameter &#x27;mode&#x27; default removed; parameter &#x27;mode&#x27; type annotation changed (untyped -&gt; str); parameter &#x27;buffering&#x27; type annotation changed (untyped -&gt; int | None); parameter &#x27;encoding&#x27; kind changed (POSITIONAL_OR_KEYWORD -&gt; KEYWORD_ONLY); parameter &#x27;encoding&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;errors&#x27; kind changed (POSITIONAL_OR_KEYWORD -&gt; KEYWORD_ONLY); parameter &#x27;errors&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;newline&#x27; kind changed (POSITIONAL_OR_KEYWORD -&gt; KEYWORD_ONLY); parameter &#x27;newline&#x27; type annotation changed (untyped -&gt; str | None); return annotation changed (untyped -&gt; typing.BinaryIO | typing.TextIO | socket.SocketIO)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.ssltransport</code></td><td><code>SSLTransport.read</code></td><td>parameter &#x27;len&#x27; type annotation changed (untyped -&gt; int); parameter &#x27;buffer&#x27; type annotation changed (untyped -&gt; typing.Any | None); return annotation changed (untyped -&gt; int | bytes)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.ssltransport</code></td><td><code>SSLTransport.recv</code></td><td>parameter &#x27;len&#x27; renamed to &#x27;buflen&#x27;; parameter &#x27;len&#x27; type annotation changed (untyped -&gt; int); parameter &#x27;flags&#x27; type annotation changed (untyped -&gt; int); return annotation changed (untyped -&gt; int | bytes)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.ssltransport</code></td><td><code>SSLTransport.recv_into</code></td><td>parameter &#x27;buffer&#x27; type annotation changed (untyped -&gt; _WriteBuffer); parameter &#x27;nbytes&#x27; type annotation changed (untyped -&gt; int | None); parameter &#x27;flags&#x27; type annotation changed (untyped -&gt; int); return annotation changed (untyped -&gt; None | int | bytes)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.ssltransport</code></td><td><code>SSLTransport.selected_alpn_protocol</code></td><td>return annotation changed (untyped -&gt; str | None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.ssltransport</code></td><td><code>SSLTransport.selected_npn_protocol</code></td><td>return annotation changed (untyped -&gt; str | None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.ssltransport</code></td><td><code>SSLTransport.send</code></td><td>parameter &#x27;data&#x27; type annotation changed (untyped -&gt; bytes); parameter &#x27;flags&#x27; type annotation changed (untyped -&gt; int); return annotation changed (untyped -&gt; int)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.ssltransport</code></td><td><code>SSLTransport.sendall</code></td><td>parameter &#x27;data&#x27; type annotation changed (untyped -&gt; bytes); parameter &#x27;flags&#x27; type annotation changed (untyped -&gt; int); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.ssltransport</code></td><td><code>SSLTransport.settimeout</code></td><td>parameter &#x27;value&#x27; type annotation changed (untyped -&gt; float | None); return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.ssltransport</code></td><td><code>SSLTransport.shared_ciphers</code></td><td>return annotation changed (untyped -&gt; list[tuple[str, str, int]] | None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.ssltransport</code></td><td><code>SSLTransport.unwrap</code></td><td>return annotation changed (untyped -&gt; None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.ssltransport</code></td><td><code>SSLTransport.version</code></td><td>return annotation changed (untyped -&gt; str | None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.timeout</code></td><td><code>Timeout</code></td><td>parameter &#x27;total&#x27; type annotation changed (untyped -&gt; _TYPE_TIMEOUT); parameter &#x27;connect&#x27; default value changed (&lt;object object at 0xADDR&gt; -&gt; &lt;_TYPE_DEFAULT.token: -1&gt;); parameter &#x27;connect&#x27; type annotation changed (untyped -&gt; _TYPE_TIMEOUT); parameter &#x27;read&#x27; default value changed (&lt;object object at 0xADDR&gt; -&gt; &lt;_TYPE_DEFAULT.token: -1&gt;); parameter &#x27;read&#x27; type annotation changed (untyped -&gt; _TYPE_TIMEOUT)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.timeout</code></td><td><code>Timeout.clone</code></td><td>return annotation changed (untyped -&gt; Timeout)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.timeout</code></td><td><code>Timeout.from_float</code></td><td>parameter &#x27;timeout&#x27; type annotation changed (untyped -&gt; _TYPE_TIMEOUT); return annotation changed (untyped -&gt; Timeout)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.timeout</code></td><td><code>Timeout.get_connect_duration</code></td><td>return annotation changed (untyped -&gt; float)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.timeout</code></td><td><code>Timeout.resolve_default_timeout</code></td><td>parameter &#x27;timeout&#x27; type annotation changed (untyped -&gt; _TYPE_TIMEOUT); return annotation changed (untyped -&gt; float | None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.timeout</code></td><td><code>Timeout.start_connect</code></td><td>return annotation changed (untyped -&gt; float)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.url</code></td><td><code>Url</code></td><td>parameter &#x27;scheme&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;auth&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;host&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;port&#x27; type annotation changed (untyped -&gt; int | None); parameter &#x27;path&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;query&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;fragment&#x27; type annotation changed (untyped -&gt; str | None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.url</code></td><td><code>normalize_host</code></td><td>parameter &#x27;host&#x27; type annotation changed (untyped -&gt; str | None); parameter &#x27;scheme&#x27; type annotation changed (untyped -&gt; str | None); return annotation changed (untyped -&gt; str | None)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.url</code></td><td><code>parse_url</code></td><td>parameter &#x27;url&#x27; type annotation changed (untyped -&gt; str); return annotation changed (untyped -&gt; Url)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.wait</code></td><td><code>poll_wait_for_socket</code></td><td>parameter &#x27;sock&#x27; type annotation changed (untyped -&gt; socket.socket); parameter &#x27;read&#x27; type annotation changed (untyped -&gt; bool); parameter &#x27;write&#x27; type annotation changed (untyped -&gt; bool); parameter &#x27;timeout&#x27; type annotation changed (untyped -&gt; float | None); return annotation changed (untyped -&gt; bool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.wait</code></td><td><code>select_wait_for_socket</code></td><td>parameter &#x27;sock&#x27; type annotation changed (untyped -&gt; socket.socket); parameter &#x27;read&#x27; type annotation changed (untyped -&gt; bool); parameter &#x27;write&#x27; type annotation changed (untyped -&gt; bool); parameter &#x27;timeout&#x27; type annotation changed (untyped -&gt; float | None); return annotation changed (untyped -&gt; bool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.wait</code></td><td><code>wait_for_read</code></td><td>parameter &#x27;sock&#x27; type annotation changed (untyped -&gt; socket.socket); parameter &#x27;timeout&#x27; type annotation changed (untyped -&gt; float | None); return annotation changed (untyped -&gt; bool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.wait</code></td><td><code>wait_for_socket</code></td><td>parameter count changed (2 -&gt; 4); return annotation changed (untyped -&gt; bool)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.wait</code></td><td><code>wait_for_write</code></td><td>parameter &#x27;sock&#x27; type annotation changed (untyped -&gt; socket.socket); parameter &#x27;timeout&#x27; type annotation changed (untyped -&gt; float | None); return annotation changed (untyped -&gt; bool)</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPHeaderDict.from_httplib</code></td><td>Removed public classmethod &#x27;urllib3.connection.HTTPHeaderDict.from_httplib&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.filepost</code></td><td><code>iter_fields</code></td><td>Removed public function &#x27;urllib3.filepost.iter_fields&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.backports.makefile</code></td><td><code>backport_makefile</code></td><td>Removed public function &#x27;urllib3.packages.backports.makefile.backport_makefile&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.backports.weakref_finalize</code></td><td><code>weakref_finalize</code></td><td>Removed public class &#x27;urllib3.packages.backports.weakref_finalize.weakref_finalize&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.backports.weakref_finalize</code></td><td><code>weakref_finalize.detach</code></td><td>Removed public method &#x27;urllib3.packages.backports.weakref_finalize.weakref_finalize.detach&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.backports.weakref_finalize</code></td><td><code>weakref_finalize.peek</code></td><td>Removed public method &#x27;urllib3.packages.backports.weakref_finalize.weakref_finalize.peek&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>Module_six_moves_urllib</code></td><td>Removed public class &#x27;urllib3.packages.six.Module_six_moves_urllib&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>Module_six_moves_urllib_error</code></td><td>Removed public class &#x27;urllib3.packages.six.Module_six_moves_urllib_error&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>Module_six_moves_urllib_parse</code></td><td>Removed public class &#x27;urllib3.packages.six.Module_six_moves_urllib_parse&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>Module_six_moves_urllib_request</code></td><td>Removed public class &#x27;urllib3.packages.six.Module_six_moves_urllib_request&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>Module_six_moves_urllib_response</code></td><td>Removed public class &#x27;urllib3.packages.six.Module_six_moves_urllib_response&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>Module_six_moves_urllib_robotparser</code></td><td>Removed public class &#x27;urllib3.packages.six.Module_six_moves_urllib_robotparser&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>MovedAttribute</code></td><td>Removed public class &#x27;urllib3.packages.six.MovedAttribute&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>MovedModule</code></td><td>Removed public class &#x27;urllib3.packages.six.MovedModule&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>add_metaclass</code></td><td>Removed public function &#x27;urllib3.packages.six.add_metaclass&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>add_move</code></td><td>Removed public function &#x27;urllib3.packages.six.add_move&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>assertCountEqual</code></td><td>Removed public function &#x27;urllib3.packages.six.assertCountEqual&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>assertNotRegex</code></td><td>Removed public function &#x27;urllib3.packages.six.assertNotRegex&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>assertRaisesRegex</code></td><td>Removed public function &#x27;urllib3.packages.six.assertRaisesRegex&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>assertRegex</code></td><td>Removed public function &#x27;urllib3.packages.six.assertRegex&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>b</code></td><td>Removed public function &#x27;urllib3.packages.six.b&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>create_unbound_method</code></td><td>Removed public function &#x27;urllib3.packages.six.create_unbound_method&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>ensure_binary</code></td><td>Removed public function &#x27;urllib3.packages.six.ensure_binary&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>ensure_str</code></td><td>Removed public function &#x27;urllib3.packages.six.ensure_str&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>ensure_text</code></td><td>Removed public function &#x27;urllib3.packages.six.ensure_text&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>get_unbound_function</code></td><td>Removed public function &#x27;urllib3.packages.six.get_unbound_function&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>iteritems</code></td><td>Removed public function &#x27;urllib3.packages.six.iteritems&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>iterkeys</code></td><td>Removed public function &#x27;urllib3.packages.six.iterkeys&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>iterlists</code></td><td>Removed public function &#x27;urllib3.packages.six.iterlists&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>itervalues</code></td><td>Removed public function &#x27;urllib3.packages.six.itervalues&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>python_2_unicode_compatible</code></td><td>Removed public function &#x27;urllib3.packages.six.python_2_unicode_compatible&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>raise_from</code></td><td>Removed public function &#x27;urllib3.packages.six.raise_from&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>remove_move</code></td><td>Removed public function &#x27;urllib3.packages.six.remove_move&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>reraise</code></td><td>Removed public function &#x27;urllib3.packages.six.reraise&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>u</code></td><td>Removed public function &#x27;urllib3.packages.six.u&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.packages.six</code></td><td><code>with_metaclass</code></td><td>Removed public function &#x27;urllib3.packages.six.with_metaclass&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.poolmanager</code></td><td><code>ProxyConfig</code></td><td>Removed public class &#x27;urllib3.poolmanager.ProxyConfig&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.request</code></td><td><code>RequestMethods</code></td><td>Removed public class &#x27;urllib3.request.RequestMethods&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.request</code></td><td><code>RequestMethods.request</code></td><td>Removed public method &#x27;urllib3.request.RequestMethods.request&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.request</code></td><td><code>RequestMethods.request_encode_body</code></td><td>Removed public method &#x27;urllib3.request.RequestMethods.request_encode_body&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.request</code></td><td><code>RequestMethods.request_encode_url</code></td><td>Removed public method &#x27;urllib3.request.RequestMethods.request_encode_url&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.request</code></td><td><code>RequestMethods.urlopen</code></td><td>Removed public method &#x27;urllib3.request.RequestMethods.urlopen&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.request</code></td><td><code>RequestModule</code></td><td>Removed public class &#x27;urllib3.request.RequestModule&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.response</code></td><td><code>HTTPResponse.from_httplib</code></td><td>Removed public classmethod &#x27;urllib3.response.HTTPResponse.from_httplib&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.util.proxy</code></td><td><code>create_proxy_ssl_context</code></td><td>Removed public function &#x27;urllib3.util.proxy.create_proxy_ssl_context&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.util.queue</code></td><td><code>LifoQueue</code></td><td>Removed public class &#x27;urllib3.util.queue.LifoQueue&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.util.queue</code></td><td><code>LifoQueue.empty</code></td><td>Removed public method &#x27;urllib3.util.queue.LifoQueue.empty&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.util.queue</code></td><td><code>LifoQueue.full</code></td><td>Removed public method &#x27;urllib3.util.queue.LifoQueue.full&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.util.queue</code></td><td><code>LifoQueue.get</code></td><td>Removed public method &#x27;urllib3.util.queue.LifoQueue.get&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.util.queue</code></td><td><code>LifoQueue.get_nowait</code></td><td>Removed public method &#x27;urllib3.util.queue.LifoQueue.get_nowait&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.util.queue</code></td><td><code>LifoQueue.join</code></td><td>Removed public method &#x27;urllib3.util.queue.LifoQueue.join&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.util.queue</code></td><td><code>LifoQueue.put</code></td><td>Removed public method &#x27;urllib3.util.queue.LifoQueue.put&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.util.queue</code></td><td><code>LifoQueue.put_nowait</code></td><td>Removed public method &#x27;urllib3.util.queue.LifoQueue.put_nowait&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.util.queue</code></td><td><code>LifoQueue.qsize</code></td><td>Removed public method &#x27;urllib3.util.queue.LifoQueue.qsize&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.util.queue</code></td><td><code>LifoQueue.task_done</code></td><td>Removed public method &#x27;urllib3.util.queue.LifoQueue.task_done&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.util.url</code></td><td><code>get_host</code></td><td>Removed public function &#x27;urllib3.util.url.get_host&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.util.url</code></td><td><code>split_first</code></td><td>Removed public function &#x27;urllib3.util.url.split_first&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>urllib3.util.wait</code></td><td><code>null_wait_for_socket</code></td><td>Removed public function &#x27;urllib3.util.wait.null_wait_for_socket&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3</code></td><td><code>request</code></td><td>Added public function &#x27;urllib3.request&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.connection</code></td><td><code>ProxyConfig</code></td><td>Added public class &#x27;urllib3.connection.ProxyConfig&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.connectionpool</code></td><td><code>RequestMethods</code></td><td>Added public class &#x27;urllib3.connectionpool.RequestMethods&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.connectionpool</code></td><td><code>RequestMethods.request</code></td><td>Added public method &#x27;urllib3.connectionpool.RequestMethods.request&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.connectionpool</code></td><td><code>RequestMethods.request_encode_body</code></td><td>Added public method &#x27;urllib3.connectionpool.RequestMethods.request_encode_body&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.connectionpool</code></td><td><code>RequestMethods.request_encode_url</code></td><td>Added public method &#x27;urllib3.connectionpool.RequestMethods.request_encode_url&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.connectionpool</code></td><td><code>RequestMethods.urlopen</code></td><td>Added public method &#x27;urllib3.connectionpool.RequestMethods.urlopen&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.fields</code></td><td><code>format_multipart_header_param</code></td><td>Added public function &#x27;urllib3.fields.format_multipart_header_param&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.response</code></td><td><code>BaseHTTPResponse</code></td><td>Added public class &#x27;urllib3.response.BaseHTTPResponse&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.response</code></td><td><code>BaseHTTPResponse.close</code></td><td>Added public method &#x27;urllib3.response.BaseHTTPResponse.close&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.response</code></td><td><code>BaseHTTPResponse.drain_conn</code></td><td>Added public method &#x27;urllib3.response.BaseHTTPResponse.drain_conn&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.response</code></td><td><code>BaseHTTPResponse.get_redirect_location</code></td><td>Added public method &#x27;urllib3.response.BaseHTTPResponse.get_redirect_location&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.response</code></td><td><code>BaseHTTPResponse.getheader</code></td><td>Added public method &#x27;urllib3.response.BaseHTTPResponse.getheader&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.response</code></td><td><code>BaseHTTPResponse.getheaders</code></td><td>Added public method &#x27;urllib3.response.BaseHTTPResponse.getheaders&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.response</code></td><td><code>BaseHTTPResponse.geturl</code></td><td>Added public method &#x27;urllib3.response.BaseHTTPResponse.geturl&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.response</code></td><td><code>BaseHTTPResponse.info</code></td><td>Added public method &#x27;urllib3.response.BaseHTTPResponse.info&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.response</code></td><td><code>BaseHTTPResponse.json</code></td><td>Added public method &#x27;urllib3.response.BaseHTTPResponse.json&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.response</code></td><td><code>BaseHTTPResponse.read</code></td><td>Added public method &#x27;urllib3.response.BaseHTTPResponse.read&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.response</code></td><td><code>BaseHTTPResponse.read_chunked</code></td><td>Added public method &#x27;urllib3.response.BaseHTTPResponse.read_chunked&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.response</code></td><td><code>BaseHTTPResponse.readinto</code></td><td>Added public method &#x27;urllib3.response.BaseHTTPResponse.readinto&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.response</code></td><td><code>BaseHTTPResponse.release_conn</code></td><td>Added public method &#x27;urllib3.response.BaseHTTPResponse.release_conn&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.response</code></td><td><code>BaseHTTPResponse.stream</code></td><td>Added public method &#x27;urllib3.response.BaseHTTPResponse.stream&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.response</code></td><td><code>BytesQueueBuffer</code></td><td>Added public class &#x27;urllib3.response.BytesQueueBuffer&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.response</code></td><td><code>BytesQueueBuffer.get</code></td><td>Added public method &#x27;urllib3.response.BytesQueueBuffer.get&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.response</code></td><td><code>BytesQueueBuffer.put</code></td><td>Added public method &#x27;urllib3.response.BytesQueueBuffer.put&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.response</code></td><td><code>ContentDecoder</code></td><td>Added public class &#x27;urllib3.response.ContentDecoder&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.response</code></td><td><code>ContentDecoder.decompress</code></td><td>Added public method &#x27;urllib3.response.ContentDecoder.decompress&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.response</code></td><td><code>ContentDecoder.flush</code></td><td>Added public method &#x27;urllib3.response.ContentDecoder.flush&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.response</code></td><td><code>DeflateDecoder.flush</code></td><td>Added public method &#x27;urllib3.response.DeflateDecoder.flush&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.response</code></td><td><code>GzipDecoder.flush</code></td><td>Added public method &#x27;urllib3.response.GzipDecoder.flush&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.response</code></td><td><code>HTTPResponse.json</code></td><td>Added public method &#x27;urllib3.response.HTTPResponse.json&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.util.request</code></td><td><code>ChunksAndContentLength</code></td><td>Added public class &#x27;urllib3.util.request.ChunksAndContentLength&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.util.request</code></td><td><code>body_to_chunks</code></td><td>Added public function &#x27;urllib3.util.request.body_to_chunks&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.util.util</code></td><td><code>reraise</code></td><td>Added public function &#x27;urllib3.util.util.reraise&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.util.util</code></td><td><code>to_bytes</code></td><td>Added public function &#x27;urllib3.util.util.to_bytes&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>urllib3.util.util</code></td><td><code>to_str</code></td><td>Added public function &#x27;urllib3.util.util.to_str&#x27;</td></tr></tbody></table>
+  <h2>Silent Behavioral Drifts (35)</h2>
+  
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#1 <code>urllib3.connection.HTTPHeaderDict(headers = None, **kwargs) -&gt; HTTPHeaderDict</code></span>
+                    <span class="tag tag-drift">exception_type_drift / fail_to_pass</span>
+                  </div>
+                  <p class="summary">v1 raised TypeError (&#x27;float&#x27; object is not iterable), but v2 returned HTTPHeaderDict({}) (urllib3._collections.HTTPHeaderDict)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>HTTPHeaderDict(float(&#x27;nan&#x27;))</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (1 steps)</div>
+                      <pre><code>HTTPHeaderDict(0.0)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RAISE TypeError: &#x27;float&#x27; object is not iterable</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN HTTPHeaderDict({}) (type: urllib3._collections.HTTPHeaderDict)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#2 <code>urllib3.connection.HTTPHeaderDict.&lt;stateful_chain&gt;[stateful chain: add, clear, copy, discard]</code></span>
+                    <span class="tag tag-drift">input_mutation_drift / in_place_mutation</span>
+                  </div>
+                  <p class="summary">Stateful instance mutation drift: attribute &#x27;__iter_items__&#x27; changed ([{&#x27;__t__&#x27;: &#x27;bytes&#x27;, &#x27;v&#x27;: &#x27;&#x27;}] -&gt; [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;&#x27;}])</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>stateful_call_chain</code>)</div>
+                      <pre><code>obj = HTTPHeaderDict(); obj.add(b&#x27;a&#x27;, &#x27; &#x27;); obj.add(&#x27;a&#x27;, &#x27;a&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (3 steps)</div>
+                      <pre><code>obj = HTTPHeaderDict(); obj.add(b&#x27;&#x27;, &#x27;&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RETURN [None] (type: builtins.list)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN [None] (type: builtins.list)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#3 <code>urllib3.connection.HTTPHeaderDict.extend(*args, **kwargs)</code></span>
+                    <span class="tag tag-drift">exception_type_drift / fail_to_pass</span>
+                  </div>
+                  <p class="summary">v1 raised TypeError (&#x27;int&#x27; object is not iterable), but v2 returned None (builtins.NoneType)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>varargs_probe</code>)</div>
+                      <pre><code>HTTPHeaderDict.extend(1)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (1 steps)</div>
+                      <pre><code>HTTPHeaderDict.extend(0)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RAISE TypeError: &#x27;int&#x27; object is not iterable</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN None (type: builtins.NoneType)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#4 <code>urllib3.connection.HTTPHeaderDict.setdefault(key, default = None)</code></span>
+                    <span class="tag tag-drift">input_mutation_drift / in_place_mutation</span>
+                  </div>
+                  <p class="summary">Stateful instance mutation drift: object repr changed (&#x27;&lt;repr_error:TypeError&gt;&#x27; -&gt; &quot;HTTPHeaderDict({&#x27;&#x27;: &#x27;&#x27;})&quot;)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>baseline_required</code>)</div>
+                      <pre><code>HTTPHeaderDict.setdefault(&#x27;&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>HTTPHeaderDict.setdefault(&#x27;&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RETURN None (type: builtins.NoneType)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN &#x27;&#x27; (type: builtins.str)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#5 <code>urllib3.connectionpool.ConnectionPool(host, port = None) -&gt; ConnectionPool</code></span>
+                    <span class="tag tag-drift">exception_type_drift / pass_to_fail</span>
+                  </div>
+                  <p class="summary">v1 returned &lt;urllib3.connectionpool.ConnectionPool object at 0xADDR&gt; (urllib3.connectionpool.ConnectionPool), but v2 raised TypeError: cannot use a string pattern on a bytes-like object</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_required</code>)</div>
+                      <pre><code>ConnectionPool(b&#x27;a&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>ConnectionPool(b&#x27;a&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connectionpool.ConnectionPool object at 0xADDR&gt; (type: urllib3.connectionpool.ConnectionPool)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RAISE TypeError: cannot use a string pattern on a bytes-like object</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#6 <code>urllib3.connectionpool.connection_from_url(url, **kw)</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on &lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt; (urllib3.connectionpool.HTTPConnectionPool): attribute &#x27;pool.queue&#x27; changed (&#x27;deque([None])&#x27; -&gt; list([{&#x27;__t__&#x27;: &#x27;none&#x27;}])); removed public attribute &#x27;strict&#x27;</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>baseline_required</code>)</div>
+                      <pre><code>connection_from_url(&#x27;https://example.com/path?a=1&amp;b=2#sec&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (5 steps)</div>
+                      <pre><code>connection_from_url(&#x27;h&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt; (type: urllib3.connectionpool.HTTPConnectionPool)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt; (type: urllib3.connectionpool.HTTPConnectionPool)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#7 <code>urllib3.connectionpool.connection_from_url(url, **kw)</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on &lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt; (urllib3.connectionpool.HTTPConnectionPool): attribute &#x27;pool.queue&#x27; changed (&#x27;deque([None])&#x27; -&gt; list([{&#x27;__t__&#x27;: &#x27;none&#x27;}])); removed public attribute &#x27;strict&#x27;</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_required</code>)</div>
+                      <pre><code>connection_from_url(&#x27;http://example.com:8080/test&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (4 steps)</div>
+                      <pre><code>connection_from_url(&#x27;e&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt; (type: urllib3.connectionpool.HTTPConnectionPool)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt; (type: urllib3.connectionpool.HTTPConnectionPool)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#8 <code>urllib3.fields.RequestField(name, data, filename = None, headers = None, header_formatter = &lt;function format_header_param_html5 at 0xADDR&gt;) -&gt; RequestField</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on &lt;urllib3.fields.RequestField object at 0xADDR&gt; (urllib3.fields.RequestField): removed public attribute &#x27;header_formatter&#x27;</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>RequestField(&quot;The &#x27;header_formatter&#x27; parameter is deprecated and will be removed in urllib3 v2.1.0.&quot;, {}, None, None, None)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (1 steps)</div>
+                      <pre><code>RequestField(&#x27;&#x27;, {}, None, None, None)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.fields.RequestField object at 0xADDR&gt; (type: urllib3.fields.RequestField)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.fields.RequestField object at 0xADDR&gt; (type: urllib3.fields.RequestField)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#9 <code>urllib3.fields.RequestField.&lt;stateful_chain&gt;[stateful chain: make_multipart, render_headers]</code></span>
+                    <span class="tag tag-drift">exception_type_drift / exception_class_changed</span>
+                  </div>
+                  <p class="summary">Exception type changed from TypeError (&#x27;expected string or bytes-like object, got &#x27;int&#x27;&#x27;) in v1 to AttributeError (&#x27;&#x27;int&#x27; object has no attribute &#x27;translate&#x27;&#x27;) in v2</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>stateful_call_chain</code>)</div>
+                      <pre><code>obj = RequestField(3, {}); obj.make_multipart(); obj.make_multipart()</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (1 steps)</div>
+                      <pre><code>obj = RequestField(3, {}); obj.make_multipart()</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RAISE TypeError: expected string or bytes-like object, got &#x27;int&#x27;</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RAISE AttributeError: &#x27;int&#x27; object has no attribute &#x27;translate&#x27;</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#10 <code>urllib3.fields.RequestField.from_tuples(fieldname, value, header_formatter = &lt;function format_header_param_html5 at 0xADDR&gt;)</code></span>
+                    <span class="tag tag-drift">exception_type_drift / exception_class_changed</span>
+                  </div>
+                  <p class="summary">Exception type changed from TypeError (&#x27;expected string or bytes-like object, got &#x27;int&#x27;&#x27;) in v1 to AttributeError (&#x27;&#x27;int&#x27; object has no attribute &#x27;translate&#x27;&#x27;) in v2</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>baseline_required</code>)</div>
+                      <pre><code>RequestField.from_tuples(3, 3)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (2 steps)</div>
+                      <pre><code>RequestField.from_tuples(0, 0)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RAISE TypeError: expected string or bytes-like object, got &#x27;int&#x27;</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RAISE AttributeError: &#x27;int&#x27; object has no attribute &#x27;translate&#x27;</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#11 <code>urllib3.fields.RequestField.from_tuples(fieldname, value, header_formatter = &lt;function format_header_param_html5 at 0xADDR&gt;)</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on &lt;urllib3.fields.RequestField object at 0xADDR&gt; (urllib3.fields.RequestField): attribute &#x27;headers&#x27; changed ([[{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;Content-Disposition&#x27;}, {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;form-data; name=&quot;%09&quot;&#x27;}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;Content-Type&#x27;}, {&#x27;__t__&#x27;: &#x27;none&#x27;}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;Content-Location&#x27;}, {&#x27;__t__&#x27;: &#x27;none&#x27;}]] -&gt; [[{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;Content-Disposition&#x27;}, {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;form-data; name=&quot;\t&quot;&#x27;}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;Content-Type&#x27;}, {&#x27;__t__&#x27;: &#x27;none&#x27;}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;Content-Location&#x27;}, {&#x27;__t__&#x27;: &#x27;none&#x27;}]])</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_required</code>)</div>
+                      <pre><code>RequestField.from_tuples(&#x27;\t\r\n&#x27;, 3)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (2 steps)</div>
+                      <pre><code>RequestField.from_tuples(&#x27;\t&#x27;, 0)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.fields.RequestField object at 0xADDR&gt; (type: urllib3.fields.RequestField)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.fields.RequestField object at 0xADDR&gt; (type: urllib3.fields.RequestField)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#12 <code>urllib3.fields.RequestField.make_multipart(content_disposition = None, content_type = None, content_location = None)</code></span>
+                    <span class="tag tag-drift">exception_type_drift / pass_to_fail</span>
+                  </div>
+                  <p class="summary">v1 returned None (builtins.NoneType), but v2 raised TypeError: can only concatenate list (not &quot;str&quot;) to list</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>RequestField(&#x27;Content-Disposition&#x27;, {}).make_multipart([1, 2])</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (2 steps)</div>
+                      <pre><code>RequestField(&#x27;Content-Disposition&#x27;, {}).make_multipart([0])</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RETURN None (type: builtins.NoneType)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RAISE TypeError: can only concatenate list (not &quot;str&quot;) to list</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#13 <code>urllib3.fields.format_header_param(name, value)</code></span>
+                    <span class="tag tag-drift">exception_type_drift / exception_class_changed</span>
+                  </div>
+                  <p class="summary">Exception type changed from TypeError (&#x27;expected string or bytes-like object, got &#x27;int&#x27;&#x27;) in v1 to AttributeError (&#x27;&#x27;int&#x27; object has no attribute &#x27;translate&#x27;&#x27;) in v2</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>baseline_required</code>)</div>
+                      <pre><code>format_header_param(2, 2)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (2 steps)</div>
+                      <pre><code>format_header_param(0, 0)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RAISE TypeError: expected string or bytes-like object, got &#x27;int&#x27;</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RAISE AttributeError: &#x27;int&#x27; object has no attribute &#x27;translate&#x27;</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#14 <code>urllib3.fields.format_header_param(name, value)</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return value drift: v1 returned &#x27;0=&quot;%09&quot;&#x27; (builtins.str) != v2 returned &#x27;0=&quot;\t&quot;&#x27; (builtins.str)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_required</code>)</div>
+                      <pre><code>format_header_param(2, &#x27;\t\r\n&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (2 steps)</div>
+                      <pre><code>format_header_param(0, &#x27;\t&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RETURN &#x27;0=&quot;%09&quot;&#x27; (type: builtins.str)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN &#x27;0=&quot;\t&quot;&#x27; (type: builtins.str)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#15 <code>urllib3.fields.format_header_param_html5(name, value)</code></span>
+                    <span class="tag tag-drift">exception_type_drift / exception_class_changed</span>
+                  </div>
+                  <p class="summary">Exception type changed from TypeError (&#x27;expected string or bytes-like object, got &#x27;int&#x27;&#x27;) in v1 to AttributeError (&#x27;&#x27;int&#x27; object has no attribute &#x27;translate&#x27;&#x27;) in v2</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_required</code>)</div>
+                      <pre><code>format_header_param_html5(&#x27;utf-8&#x27;, 2)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (2 steps)</div>
+                      <pre><code>format_header_param_html5(&#x27;&#x27;, 0)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RAISE TypeError: expected string or bytes-like object, got &#x27;int&#x27;</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RAISE AttributeError: &#x27;int&#x27; object has no attribute &#x27;translate&#x27;</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#16 <code>urllib3.fields.format_header_param_html5(name, value)</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return value drift: v1 returned &#x27;=&quot;%09&quot;&#x27; (builtins.str) != v2 returned &#x27;=&quot;\t&quot;&#x27; (builtins.str)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_required</code>)</div>
+                      <pre><code>format_header_param_html5(&#x27;utf-8&#x27;, &#x27;\t\r\n&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (2 steps)</div>
+                      <pre><code>format_header_param_html5(&#x27;&#x27;, &#x27;\t&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RETURN &#x27;=&quot;%09&quot;&#x27; (type: builtins.str)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN &#x27;=&quot;\t&quot;&#x27; (type: builtins.str)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#17 <code>urllib3.poolmanager.PoolManager.&lt;stateful_chain&gt;[stateful chain: clear, connection_from_context, connection_from_host, connection_from_pool_key]</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on [&lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt;] (builtins.list): attribute &#x27;[0].conn_kw&#x27; changed ([] -&gt; [[{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;blocksize&#x27;}, {&#x27;__t__&#x27;: &#x27;int&#x27;, &#x27;v&#x27;: 16384}]]); attribute &#x27;[0].pool.queue&#x27; changed (&#x27;deque([None])&#x27; -&gt; list([{&#x27;__t__&#x27;: &#x27;none&#x27;}])); removed public attribute &#x27;[0].strict&#x27;</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>stateful_call_chain</code>)</div>
+                      <pre><code>obj = PoolManager(); obj.clear(); obj.connection_from_host(&#x27;a&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (1 steps)</div>
+                      <pre><code>obj = PoolManager(); obj.connection_from_host(&#x27;a&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RETURN [&lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt;] (type: builtins.list)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN [&lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt;] (type: builtins.list)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#18 <code>urllib3.poolmanager.PoolManager.connection_from_host(host, port = None, scheme = &#x27;http&#x27;, pool_kwargs = None)</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on &lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt; (urllib3.connectionpool.HTTPConnectionPool): attribute &#x27;conn_kw&#x27; changed ([] -&gt; [[{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;blocksize&#x27;}, {&#x27;__t__&#x27;: &#x27;int&#x27;, &#x27;v&#x27;: 16384}]]); attribute &#x27;pool.queue&#x27; changed (&#x27;deque([None])&#x27; -&gt; list([{&#x27;__t__&#x27;: &#x27;none&#x27;}])); removed public attribute &#x27;strict&#x27;</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>baseline_required</code>)</div>
+                      <pre><code>PoolManager.connection_from_host(&#x27;https://example.com/path?a=1&amp;b=2#sec&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (5 steps)</div>
+                      <pre><code>PoolManager.connection_from_host(&#x27;h&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt; (type: urllib3.connectionpool.HTTPConnectionPool)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt; (type: urllib3.connectionpool.HTTPConnectionPool)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#19 <code>urllib3.poolmanager.PoolManager.connection_from_url(url, pool_kwargs = None)</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on &lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt; (urllib3.connectionpool.HTTPConnectionPool): attribute &#x27;conn_kw&#x27; changed ([] -&gt; [[{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;blocksize&#x27;}, {&#x27;__t__&#x27;: &#x27;int&#x27;, &#x27;v&#x27;: 16384}]]); attribute &#x27;pool.queue&#x27; changed (&#x27;deque([None])&#x27; -&gt; list([{&#x27;__t__&#x27;: &#x27;none&#x27;}])); removed public attribute &#x27;strict&#x27;</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>baseline_required</code>)</div>
+                      <pre><code>PoolManager.connection_from_url(&#x27;https://example.com/path?a=1&amp;b=2#sec&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (5 steps)</div>
+                      <pre><code>PoolManager.connection_from_url(&#x27;h&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt; (type: urllib3.connectionpool.HTTPConnectionPool)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt; (type: urllib3.connectionpool.HTTPConnectionPool)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#20 <code>urllib3.poolmanager.PoolManager.connection_from_url(url, pool_kwargs = None)</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on &lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt; (urllib3.connectionpool.HTTPConnectionPool): attribute &#x27;conn_kw&#x27; changed ([] -&gt; [[{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;blocksize&#x27;}, {&#x27;__t__&#x27;: &#x27;int&#x27;, &#x27;v&#x27;: 16384}]]); attribute &#x27;pool.queue&#x27; changed (&#x27;deque([None])&#x27; -&gt; list([{&#x27;__t__&#x27;: &#x27;none&#x27;}])); removed public attribute &#x27;strict&#x27;</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_required</code>)</div>
+                      <pre><code>PoolManager.connection_from_url(&#x27;http://example.com:8080/test&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (4 steps)</div>
+                      <pre><code>PoolManager.connection_from_url(&#x27;e&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt; (type: urllib3.connectionpool.HTTPConnectionPool)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt; (type: urllib3.connectionpool.HTTPConnectionPool)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#21 <code>urllib3.poolmanager.ProxyManager.connection_from_host(host, port = None, scheme = &#x27;http&#x27;, pool_kwargs = None)</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on &lt;urllib3.connectionpool.HTTPSConnectionPool object at 0xADDR&gt; (urllib3.connectionpool.HTTPSConnectionPool): attribute &#x27;conn_kw&#x27; changed ([[{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;socket_options&#x27;}, {&#x27;__t__&#x27;: &#x27;list&#x27;, &#x27;v&#x27;: []}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;proxy&#x27;}, {&#x27;__t__&#x27;: &#x27;object&#x27;, &#x27;cls&#x27;: &#x27;urllib3.util.url.Url&#x27;, &#x27;str&#x27;: &#x27;https://example.com:443/path?a=1&amp;b=2#sec&#x27;, &#x27;repr&#x27;: &quot;Url(scheme=&#x27;https&#x27;, auth=None, host=&#x27;example.com&#x27;, port=443, path=&#x27;/path&#x27;, query=&#x27;a=1&amp;b=2&#x27;, fragment=&#x27;sec&#x27;)&quot;, &#x27;state&#x27;: {&#x27;scheme&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;https&#x27;}, &#x27;auth&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;host&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;example.com&#x27;}, &#x27;port&#x27;: {&#x27;__t__&#x27;: &#x27;int&#x27;, &#x27;v&#x27;: 443}, &#x27;path&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;/path&#x27;}, &#x27;query&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;a=1&amp;b=2&#x27;}, &#x27;fragment&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;sec&#x27;}}}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;proxy_config&#x27;}, {&#x27;__t__&#x27;: &#x27;object&#x27;, &#x27;cls&#x27;: &#x27;urllib3.poolmanager.ProxyConfig&#x27;, &#x27;str&#x27;: &#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False)&#x27;, &#x27;repr&#x27;: &#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False)&#x27;, &#x27;state&#x27;: {&#x27;ssl_context&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;use_forwarding_for_https&#x27;: {&#x27;__t__&#x27;: &#x27;bool&#x27;, &#x27;v&#x27;: False}}}]] -&gt; [[{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;blocksize&#x27;}, {&#x27;__t__&#x27;: &#x27;int&#x27;, &#x27;v&#x27;: 16384}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;socket_options&#x27;}, {&#x27;__t__&#x27;: &#x27;list&#x27;, &#x27;v&#x27;: []}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;proxy&#x27;}, {&#x27;__t__&#x27;: &#x27;object&#x27;, &#x27;cls&#x27;: &#x27;urllib3.util.url.Url&#x27;, &#x27;str&#x27;: &#x27;https://example.com:443/path?a=1&amp;b=2#sec&#x27;, &#x27;repr&#x27;: &quot;Url(scheme=&#x27;https&#x27;, auth=None, host=&#x27;example.com&#x27;, port=443, path=&#x27;/path&#x27;, query=&#x27;a=1&amp;b=2&#x27;, fragment=&#x27;sec&#x27;)&quot;, &#x27;state&#x27;: {&#x27;scheme&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;https&#x27;}, &#x27;auth&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;host&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;example.com&#x27;}, &#x27;port&#x27;: {&#x27;__t__&#x27;: &#x27;int&#x27;, &#x27;v&#x27;: 443}, &#x27;path&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;/path&#x27;}, &#x27;query&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;a=1&amp;b=2&#x27;}, &#x27;fragment&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;sec&#x27;}}}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;proxy_config&#x27;}, {&#x27;__t__&#x27;: &#x27;object&#x27;, &#x27;cls&#x27;: &#x27;urllib3._base_connection.ProxyConfig&#x27;, &#x27;str&#x27;: &#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False, assert_hostname=None, assert_fingerprint=None)&#x27;, &#x27;repr&#x27;: &#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False, assert_hostname=None, assert_fingerprint=None)&#x27;, &#x27;state&#x27;: {&#x27;ssl_context&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;use_forwarding_for_https&#x27;: {&#x27;__t__&#x27;: &#x27;bool&#x27;, &#x27;v&#x27;: False}, &#x27;assert_hostname&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;assert_fingerprint&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}}}]]); attribute &#x27;pool.queue&#x27; changed (&#x27;deque([None])&#x27; -&gt; list([{&#x27;__t__&#x27;: &#x27;none&#x27;}])); proxy_config repr changed (&#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False)&#x27; -&gt; &#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False, assert_hostname=None, assert_fingerprint=None)&#x27;); removed public attribute &#x27;strict&#x27;</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>baseline_required</code>)</div>
+                      <pre><code>ProxyManager(&#x27;https://example.com/path?a=1&amp;b=2#sec&#x27;).connection_from_host(&#x27;https://example.com/path?a=1&amp;b=2#sec&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (1 steps)</div>
+                      <pre><code>ProxyManager(&#x27;https://example.com/path?a=1&amp;b=2#sec&#x27;).connection_from_host(&#x27;&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connectionpool.HTTPSConnectionPool object at 0xADDR&gt; (type: urllib3.connectionpool.HTTPSConnectionPool)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connectionpool.HTTPSConnectionPool object at 0xADDR&gt; (type: urllib3.connectionpool.HTTPSConnectionPool)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#22 <code>urllib3.poolmanager.ProxyManager.connection_from_host(host, port = None, scheme = &#x27;http&#x27;, pool_kwargs = None)</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on &lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt; (urllib3.connectionpool.HTTPConnectionPool): attribute &#x27;conn_kw&#x27; changed ([[{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;socket_options&#x27;}, {&#x27;__t__&#x27;: &#x27;list&#x27;, &#x27;v&#x27;: []}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;proxy&#x27;}, {&#x27;__t__&#x27;: &#x27;object&#x27;, &#x27;cls&#x27;: &#x27;urllib3.util.url.Url&#x27;, &#x27;str&#x27;: &#x27;http://example.com:8080/test&#x27;, &#x27;repr&#x27;: &quot;Url(scheme=&#x27;http&#x27;, auth=None, host=&#x27;example.com&#x27;, port=8080, path=&#x27;/test&#x27;, query=None, fragment=None)&quot;, &#x27;state&#x27;: {&#x27;scheme&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;http&#x27;}, &#x27;auth&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;host&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;example.com&#x27;}, &#x27;port&#x27;: {&#x27;__t__&#x27;: &#x27;int&#x27;, &#x27;v&#x27;: 8080}, &#x27;path&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;/test&#x27;}, &#x27;query&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;fragment&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}}}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;proxy_config&#x27;}, {&#x27;__t__&#x27;: &#x27;object&#x27;, &#x27;cls&#x27;: &#x27;urllib3.poolmanager.ProxyConfig&#x27;, &#x27;str&#x27;: &#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False)&#x27;, &#x27;repr&#x27;: &#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False)&#x27;, &#x27;state&#x27;: {&#x27;ssl_context&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;use_forwarding_for_https&#x27;: {&#x27;__t__&#x27;: &#x27;bool&#x27;, &#x27;v&#x27;: False}}}]] -&gt; [[{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;blocksize&#x27;}, {&#x27;__t__&#x27;: &#x27;int&#x27;, &#x27;v&#x27;: 16384}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;socket_options&#x27;}, {&#x27;__t__&#x27;: &#x27;list&#x27;, &#x27;v&#x27;: []}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;proxy&#x27;}, {&#x27;__t__&#x27;: &#x27;object&#x27;, &#x27;cls&#x27;: &#x27;urllib3.util.url.Url&#x27;, &#x27;str&#x27;: &#x27;http://example.com:8080/test&#x27;, &#x27;repr&#x27;: &quot;Url(scheme=&#x27;http&#x27;, auth=None, host=&#x27;example.com&#x27;, port=8080, path=&#x27;/test&#x27;, query=None, fragment=None)&quot;, &#x27;state&#x27;: {&#x27;scheme&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;http&#x27;}, &#x27;auth&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;host&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;example.com&#x27;}, &#x27;port&#x27;: {&#x27;__t__&#x27;: &#x27;int&#x27;, &#x27;v&#x27;: 8080}, &#x27;path&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;/test&#x27;}, &#x27;query&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;fragment&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}}}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;proxy_config&#x27;}, {&#x27;__t__&#x27;: &#x27;object&#x27;, &#x27;cls&#x27;: &#x27;urllib3._base_connection.ProxyConfig&#x27;, &#x27;str&#x27;: &#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False, assert_hostname=None, assert_fingerprint=None)&#x27;, &#x27;repr&#x27;: &#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False, assert_hostname=None, assert_fingerprint=None)&#x27;, &#x27;state&#x27;: {&#x27;ssl_context&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;use_forwarding_for_https&#x27;: {&#x27;__t__&#x27;: &#x27;bool&#x27;, &#x27;v&#x27;: False}, &#x27;assert_hostname&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;assert_fingerprint&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}}}]]); attribute &#x27;pool.queue&#x27; changed (&#x27;deque([None])&#x27; -&gt; list([{&#x27;__t__&#x27;: &#x27;none&#x27;}])); proxy_config repr changed (&#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False)&#x27; -&gt; &#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False, assert_hostname=None, assert_fingerprint=None)&#x27;); removed public attribute &#x27;strict&#x27;</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>baseline_required</code>)</div>
+                      <pre><code>ProxyManager(&#x27;http://example.com:8080/test&#x27;).connection_from_host(&#x27;https://example.com/path?a=1&amp;b=2#sec&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (1 steps)</div>
+                      <pre><code>ProxyManager(&#x27;http://example.com:8080/test&#x27;).connection_from_host(&#x27;&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt; (type: urllib3.connectionpool.HTTPConnectionPool)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt; (type: urllib3.connectionpool.HTTPConnectionPool)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#23 <code>urllib3.poolmanager.ProxyManager.connection_from_url(url, pool_kwargs = None)</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on &lt;urllib3.connectionpool.HTTPSConnectionPool object at 0xADDR&gt; (urllib3.connectionpool.HTTPSConnectionPool): attribute &#x27;conn_kw&#x27; changed ([[{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;socket_options&#x27;}, {&#x27;__t__&#x27;: &#x27;list&#x27;, &#x27;v&#x27;: []}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;proxy&#x27;}, {&#x27;__t__&#x27;: &#x27;object&#x27;, &#x27;cls&#x27;: &#x27;urllib3.util.url.Url&#x27;, &#x27;str&#x27;: &#x27;https://example.com:443/path?a=1&amp;b=2#sec&#x27;, &#x27;repr&#x27;: &quot;Url(scheme=&#x27;https&#x27;, auth=None, host=&#x27;example.com&#x27;, port=443, path=&#x27;/path&#x27;, query=&#x27;a=1&amp;b=2&#x27;, fragment=&#x27;sec&#x27;)&quot;, &#x27;state&#x27;: {&#x27;scheme&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;https&#x27;}, &#x27;auth&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;host&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;example.com&#x27;}, &#x27;port&#x27;: {&#x27;__t__&#x27;: &#x27;int&#x27;, &#x27;v&#x27;: 443}, &#x27;path&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;/path&#x27;}, &#x27;query&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;a=1&amp;b=2&#x27;}, &#x27;fragment&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;sec&#x27;}}}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;proxy_config&#x27;}, {&#x27;__t__&#x27;: &#x27;object&#x27;, &#x27;cls&#x27;: &#x27;urllib3.poolmanager.ProxyConfig&#x27;, &#x27;str&#x27;: &#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False)&#x27;, &#x27;repr&#x27;: &#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False)&#x27;, &#x27;state&#x27;: {&#x27;ssl_context&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;use_forwarding_for_https&#x27;: {&#x27;__t__&#x27;: &#x27;bool&#x27;, &#x27;v&#x27;: False}}}]] -&gt; [[{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;blocksize&#x27;}, {&#x27;__t__&#x27;: &#x27;int&#x27;, &#x27;v&#x27;: 16384}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;socket_options&#x27;}, {&#x27;__t__&#x27;: &#x27;list&#x27;, &#x27;v&#x27;: []}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;proxy&#x27;}, {&#x27;__t__&#x27;: &#x27;object&#x27;, &#x27;cls&#x27;: &#x27;urllib3.util.url.Url&#x27;, &#x27;str&#x27;: &#x27;https://example.com:443/path?a=1&amp;b=2#sec&#x27;, &#x27;repr&#x27;: &quot;Url(scheme=&#x27;https&#x27;, auth=None, host=&#x27;example.com&#x27;, port=443, path=&#x27;/path&#x27;, query=&#x27;a=1&amp;b=2&#x27;, fragment=&#x27;sec&#x27;)&quot;, &#x27;state&#x27;: {&#x27;scheme&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;https&#x27;}, &#x27;auth&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;host&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;example.com&#x27;}, &#x27;port&#x27;: {&#x27;__t__&#x27;: &#x27;int&#x27;, &#x27;v&#x27;: 443}, &#x27;path&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;/path&#x27;}, &#x27;query&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;a=1&amp;b=2&#x27;}, &#x27;fragment&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;sec&#x27;}}}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;proxy_config&#x27;}, {&#x27;__t__&#x27;: &#x27;object&#x27;, &#x27;cls&#x27;: &#x27;urllib3._base_connection.ProxyConfig&#x27;, &#x27;str&#x27;: &#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False, assert_hostname=None, assert_fingerprint=None)&#x27;, &#x27;repr&#x27;: &#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False, assert_hostname=None, assert_fingerprint=None)&#x27;, &#x27;state&#x27;: {&#x27;ssl_context&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;use_forwarding_for_https&#x27;: {&#x27;__t__&#x27;: &#x27;bool&#x27;, &#x27;v&#x27;: False}, &#x27;assert_hostname&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;assert_fingerprint&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}}}]]); attribute &#x27;pool.queue&#x27; changed (&#x27;deque([None])&#x27; -&gt; list([{&#x27;__t__&#x27;: &#x27;none&#x27;}])); proxy_config repr changed (&#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False)&#x27; -&gt; &#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False, assert_hostname=None, assert_fingerprint=None)&#x27;); removed public attribute &#x27;strict&#x27;</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>baseline_required</code>)</div>
+                      <pre><code>ProxyManager(&#x27;https://example.com/path?a=1&amp;b=2#sec&#x27;).connection_from_url(&#x27;https://example.com/path?a=1&amp;b=2#sec&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (1 steps)</div>
+                      <pre><code>ProxyManager(&#x27;https://example.com/path?a=1&amp;b=2#sec&#x27;).connection_from_url(&#x27;&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connectionpool.HTTPSConnectionPool object at 0xADDR&gt; (type: urllib3.connectionpool.HTTPSConnectionPool)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connectionpool.HTTPSConnectionPool object at 0xADDR&gt; (type: urllib3.connectionpool.HTTPSConnectionPool)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#24 <code>urllib3.poolmanager.ProxyManager.connection_from_url(url, pool_kwargs = None)</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on &lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt; (urllib3.connectionpool.HTTPConnectionPool): attribute &#x27;conn_kw&#x27; changed ([[{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;socket_options&#x27;}, {&#x27;__t__&#x27;: &#x27;list&#x27;, &#x27;v&#x27;: []}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;proxy&#x27;}, {&#x27;__t__&#x27;: &#x27;object&#x27;, &#x27;cls&#x27;: &#x27;urllib3.util.url.Url&#x27;, &#x27;str&#x27;: &#x27;http://example.com:8080/test&#x27;, &#x27;repr&#x27;: &quot;Url(scheme=&#x27;http&#x27;, auth=None, host=&#x27;example.com&#x27;, port=8080, path=&#x27;/test&#x27;, query=None, fragment=None)&quot;, &#x27;state&#x27;: {&#x27;scheme&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;http&#x27;}, &#x27;auth&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;host&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;example.com&#x27;}, &#x27;port&#x27;: {&#x27;__t__&#x27;: &#x27;int&#x27;, &#x27;v&#x27;: 8080}, &#x27;path&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;/test&#x27;}, &#x27;query&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;fragment&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}}}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;proxy_config&#x27;}, {&#x27;__t__&#x27;: &#x27;object&#x27;, &#x27;cls&#x27;: &#x27;urllib3.poolmanager.ProxyConfig&#x27;, &#x27;str&#x27;: &#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False)&#x27;, &#x27;repr&#x27;: &#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False)&#x27;, &#x27;state&#x27;: {&#x27;ssl_context&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;use_forwarding_for_https&#x27;: {&#x27;__t__&#x27;: &#x27;bool&#x27;, &#x27;v&#x27;: False}}}]] -&gt; [[{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;blocksize&#x27;}, {&#x27;__t__&#x27;: &#x27;int&#x27;, &#x27;v&#x27;: 16384}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;socket_options&#x27;}, {&#x27;__t__&#x27;: &#x27;list&#x27;, &#x27;v&#x27;: []}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;proxy&#x27;}, {&#x27;__t__&#x27;: &#x27;object&#x27;, &#x27;cls&#x27;: &#x27;urllib3.util.url.Url&#x27;, &#x27;str&#x27;: &#x27;http://example.com:8080/test&#x27;, &#x27;repr&#x27;: &quot;Url(scheme=&#x27;http&#x27;, auth=None, host=&#x27;example.com&#x27;, port=8080, path=&#x27;/test&#x27;, query=None, fragment=None)&quot;, &#x27;state&#x27;: {&#x27;scheme&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;http&#x27;}, &#x27;auth&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;host&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;example.com&#x27;}, &#x27;port&#x27;: {&#x27;__t__&#x27;: &#x27;int&#x27;, &#x27;v&#x27;: 8080}, &#x27;path&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;/test&#x27;}, &#x27;query&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;fragment&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}}}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;proxy_config&#x27;}, {&#x27;__t__&#x27;: &#x27;object&#x27;, &#x27;cls&#x27;: &#x27;urllib3._base_connection.ProxyConfig&#x27;, &#x27;str&#x27;: &#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False, assert_hostname=None, assert_fingerprint=None)&#x27;, &#x27;repr&#x27;: &#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False, assert_hostname=None, assert_fingerprint=None)&#x27;, &#x27;state&#x27;: {&#x27;ssl_context&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;use_forwarding_for_https&#x27;: {&#x27;__t__&#x27;: &#x27;bool&#x27;, &#x27;v&#x27;: False}, &#x27;assert_hostname&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;assert_fingerprint&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}}}]]); attribute &#x27;pool.queue&#x27; changed (&#x27;deque([None])&#x27; -&gt; list([{&#x27;__t__&#x27;: &#x27;none&#x27;}])); proxy_config repr changed (&#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False)&#x27; -&gt; &#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False, assert_hostname=None, assert_fingerprint=None)&#x27;); removed public attribute &#x27;strict&#x27;</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_required</code>)</div>
+                      <pre><code>ProxyManager(&#x27;http://example.com:8080/test&#x27;).connection_from_url(&#x27;http://example.com:8080/test&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (1 steps)</div>
+                      <pre><code>ProxyManager(&#x27;http://example.com:8080/test&#x27;).connection_from_url(&#x27;&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt; (type: urllib3.connectionpool.HTTPConnectionPool)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt; (type: urllib3.connectionpool.HTTPConnectionPool)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#25 <code>urllib3.poolmanager.proxy_from_url(url, **kw)</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on &lt;urllib3.poolmanager.ProxyManager object at 0xADDR&gt; (urllib3.poolmanager.ProxyManager): attribute &#x27;connection_pool_kw&#x27; changed ([[{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;_proxy&#x27;}, {&#x27;__t__&#x27;: &#x27;object&#x27;, &#x27;cls&#x27;: &#x27;urllib3.util.url.Url&#x27;, &#x27;str&#x27;: &#x27;https://:443&#x27;, &#x27;repr&#x27;: &quot;Url(scheme=&#x27;https&#x27;, auth=None, host=None, port=443, path=None, query=None, fragment=None)&quot;, &#x27;state&#x27;: {&#x27;scheme&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;https&#x27;}, &#x27;auth&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;host&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;port&#x27;: {&#x27;__t__&#x27;: &#x27;int&#x27;, &#x27;v&#x27;: 443}, &#x27;path&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;query&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;fragment&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}}}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;_proxy_headers&#x27;}, {&#x27;__t__&#x27;: &#x27;dict&#x27;, &#x27;v&#x27;: []}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;_proxy_config&#x27;}, {&#x27;__t__&#x27;: &#x27;object&#x27;, &#x27;cls&#x27;: &#x27;urllib3.poolmanager.ProxyConfig&#x27;, &#x27;str&#x27;: &#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False)&#x27;, &#x27;repr&#x27;: &#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False)&#x27;, &#x27;state&#x27;: {&#x27;ssl_context&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;use_forwarding_for_https&#x27;: {&#x27;__t__&#x27;: &#x27;bool&#x27;, &#x27;v&#x27;: False}}}]] -&gt; [[{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;_proxy&#x27;}, {&#x27;__t__&#x27;: &#x27;object&#x27;, &#x27;cls&#x27;: &#x27;urllib3.util.url.Url&#x27;, &#x27;str&#x27;: &#x27;https://:443&#x27;, &#x27;repr&#x27;: &quot;Url(scheme=&#x27;https&#x27;, auth=None, host=None, port=443, path=None, query=None, fragment=None)&quot;, &#x27;state&#x27;: {&#x27;scheme&#x27;: {&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;https&#x27;}, &#x27;auth&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;host&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;port&#x27;: {&#x27;__t__&#x27;: &#x27;int&#x27;, &#x27;v&#x27;: 443}, &#x27;path&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;query&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;fragment&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}}}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;_proxy_headers&#x27;}, {&#x27;__t__&#x27;: &#x27;dict&#x27;, &#x27;v&#x27;: []}], [{&#x27;__t__&#x27;: &#x27;str&#x27;, &#x27;v&#x27;: &#x27;_proxy_config&#x27;}, {&#x27;__t__&#x27;: &#x27;object&#x27;, &#x27;cls&#x27;: &#x27;urllib3._base_connection.ProxyConfig&#x27;, &#x27;str&#x27;: &#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False, assert_hostname=None, assert_fingerprint=None)&#x27;, &#x27;repr&#x27;: &#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False, assert_hostname=None, assert_fingerprint=None)&#x27;, &#x27;state&#x27;: {&#x27;ssl_context&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;use_forwarding_for_https&#x27;: {&#x27;__t__&#x27;: &#x27;bool&#x27;, &#x27;v&#x27;: False}, &#x27;assert_hostname&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}, &#x27;assert_fingerprint&#x27;: {&#x27;__t__&#x27;: &#x27;none&#x27;}}}]]); proxy_config repr changed (&#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False)&#x27; -&gt; &#x27;ProxyConfig(ssl_context=None, use_forwarding_for_https=False, assert_hostname=None, assert_fingerprint=None)&#x27;)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>baseline_required</code>)</div>
+                      <pre><code>proxy_from_url(&#x27;https://example.com/path?a=1&amp;b=2#sec&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (5 steps)</div>
+                      <pre><code>proxy_from_url(&#x27;https:&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.poolmanager.ProxyManager object at 0xADDR&gt; (type: urllib3.poolmanager.ProxyManager)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.poolmanager.ProxyManager object at 0xADDR&gt; (type: urllib3.poolmanager.ProxyManager)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#26 <code>urllib3.response.HTTPResponse.read(amt = None, decode_content = None, cache_content = False)</code></span>
+                    <span class="tag tag-drift">exception_type_drift / pass_to_fail</span>
+                  </div>
+                  <p class="summary">v1 returned None (builtins.NoneType), but v2 raised TypeError: &#x27;&gt;=&#x27; not supported between instances of &#x27;int&#x27; and &#x27;str&#x27;</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>HTTPResponse.read(&#x27;&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>HTTPResponse.read(&#x27;&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RETURN None (type: builtins.NoneType)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RAISE TypeError: &#x27;&gt;=&#x27; not supported between instances of &#x27;int&#x27; and &#x27;str&#x27;</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#27 <code>urllib3.response.HTTPResponse.read(amt = None, decode_content = None, cache_content = False)</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return value drift: v1 returned None (builtins.NoneType) != v2 returned b&#x27;&#x27; (builtins.bytes)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>HTTPResponse.read(0)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>HTTPResponse.read(0)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RETURN None (type: builtins.NoneType)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN b&#x27;&#x27; (type: builtins.bytes)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#28 <code>urllib3.response.HTTPResponse.read(amt = None, decode_content = None, cache_content = False)</code></span>
+                    <span class="tag tag-drift">exception_type_drift / pass_to_fail</span>
+                  </div>
+                  <p class="summary">v1 returned None (builtins.NoneType), but v2 raised RuntimeError: buffer is empty</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>HTTPResponse.read(-1)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>HTTPResponse.read(-1)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RETURN None (type: builtins.NoneType)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RAISE RuntimeError: buffer is empty</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#29 <code>urllib3.response.HTTPResponse.readinto(b)</code></span>
+                    <span class="tag tag-drift">exception_type_drift / fail_to_pass</span>
+                  </div>
+                  <p class="summary">v1 raised TypeError (object of type &#x27;NoneType&#x27; has no len()), but v2 returned 0 (builtins.int)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>baseline_required</code>)</div>
+                      <pre><code>HTTPResponse.readinto(&#x27;&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>HTTPResponse.readinto(&#x27;&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RAISE TypeError: object of type &#x27;NoneType&#x27; has no len()</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN 0 (type: builtins.int)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#30 <code>urllib3.util.connection.is_connection_dropped(conn)</code></span>
+                    <span class="tag tag-drift">exception_type_drift / pass_to_fail</span>
+                  </div>
+                  <p class="summary">v1 returned False (builtins.bool), but v2 raised AttributeError: &#x27;str&#x27; object has no attribute &#x27;is_connected&#x27;</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>baseline_required</code>)</div>
+                      <pre><code>is_connection_dropped(&#x27;&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>is_connection_dropped(&#x27;&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RETURN False (type: builtins.bool)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RAISE AttributeError: &#x27;str&#x27; object has no attribute &#x27;is_connected&#x27;</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#31 <code>urllib3.util.retry.Retry.sleep_for_retry(response = None)</code></span>
+                    <span class="tag tag-drift">exception_type_drift / exception_class_changed</span>
+                  </div>
+                  <p class="summary">Exception type changed from AttributeError (&#x27;&#x27;NoneType&#x27; object has no attribute &#x27;headers&#x27;&#x27;) in v1 to TypeError (&#x27;Retry.sleep_for_retry() missing 1 required positional argument: &#x27;response&#x27;&#x27;) in v2</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>defaults_only</code>)</div>
+                      <pre><code>Retry.sleep_for_retry()</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>Retry.sleep_for_retry()</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RAISE AttributeError: &#x27;NoneType&#x27; object has no attribute &#x27;headers&#x27;</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RAISE TypeError: Retry.sleep_for_retry() missing 1 required positional argument: &#x27;response&#x27;</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#32 <code>urllib3.util.ssl_.create_urllib3_context(ssl_version = None, cert_reqs = None, options = None, ciphers = None)</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on &lt;ssl.SSLContext object at 0xADDR&gt; (ssl.SSLContext): attribute &#x27;hostname_checks_common_name&#x27; changed (True -&gt; False)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>defaults_only</code>)</div>
+                      <pre><code>create_urllib3_context()</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>create_urllib3_context()</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RETURN &lt;ssl.SSLContext object at 0xADDR&gt; (type: ssl.SSLContext)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN &lt;ssl.SSLContext object at 0xADDR&gt; (type: ssl.SSLContext)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#33 <code>urllib3.util.ssl_.create_urllib3_context(ssl_version = None, cert_reqs = None, options = None, ciphers = None)</code></span>
+                    <span class="tag tag-drift">exception_type_drift / fail_to_pass</span>
+                  </div>
+                  <p class="summary">v1 raised TypeError (&#x27;str&#x27; object cannot be interpreted as an integer), but v2 returned &lt;ssl.SSLContext object at 0xADDR&gt; (ssl.SSLContext)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>create_urllib3_context(&#x27;1.0.0&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (2 steps)</div>
+                      <pre><code>create_urllib3_context(&#x27;1&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RAISE TypeError: &#x27;str&#x27; object cannot be interpreted as an integer</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN &lt;ssl.SSLContext object at 0xADDR&gt; (type: ssl.SSLContext)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#34 <code>urllib3.util.ssl_.create_urllib3_context(ssl_version = None, cert_reqs = None, options = None, ciphers = None)</code></span>
+                    <span class="tag tag-drift">exception_type_drift / fail_to_pass</span>
+                  </div>
+                  <p class="summary">v1 raised ValueError (invalid or unsupported protocol version 1), but v2 returned &lt;ssl.SSLContext object at 0xADDR&gt; (ssl.SSLContext)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>create_urllib3_context(-1)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (13 steps)</div>
+                      <pre><code>create_urllib3_context(1)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RAISE ValueError: invalid or unsupported protocol version 1</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN &lt;ssl.SSLContext object at 0xADDR&gt; (type: ssl.SSLContext)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#35 <code>urllib3.util.ssl_.ssl_wrap_socket(sock, keyfile = None, certfile = None, cert_reqs = None, ca_certs = None, server_hostname = None, ssl_version = None, ciphers = None, ssl_context = None, ca_cert_dir = None, key_password = None, ca_cert_data = None, tls_in_tls = False)</code></span>
+                    <span class="tag tag-drift">exception_type_drift / exception_class_changed</span>
+                  </div>
+                  <p class="summary">Exception type changed from TypeError (&#x27;&#x27;str&#x27; object cannot be interpreted as an integer&#x27;) in v1 to AttributeError (&#x27;&#x27;str&#x27; object has no attribute &#x27;getsockopt&#x27;&#x27;) in v2</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>ssl_wrap_socket(&#x27;&#x27;, None, None, None, None, None, &#x27;1.0.0&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (2 steps)</div>
+                      <pre><code>ssl_wrap_socket(&#x27;&#x27;, None, None, None, None, None, &#x27;1&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 1.26.18 Outcome</div>
+                      <pre><code>RAISE TypeError: &#x27;str&#x27; object cannot be interpreted as an integer</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RAISE AttributeError: &#x27;str&#x27; object has no attribute &#x27;getsockopt&#x27;</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+</div>
+</body>
+</html>

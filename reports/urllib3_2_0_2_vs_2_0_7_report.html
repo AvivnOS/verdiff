@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VerDiff Report: urllib3 (2.0.2 vs 2.0.7)</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --panel: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+    --danger: #f85149;
+    --ok: #3fb950;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 2rem;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+  }
+  .container { max-width: 1180px; margin: 0 auto; }
+  h1, h2 { border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.75rem;
+    margin: 1.25rem 0 2rem;
+  }
+  .metric-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+  }
+  .metric-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; }
+  .metric-val { font-size: 1.35rem; font-weight: 600; margin-top: 0.25rem; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; background: var(--panel); border: 1px solid var(--border); }
+  th, td { text-align: left; padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+  th { color: var(--muted); font-weight: 600; background: #11151c; }
+  code, pre { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.86rem; }
+  pre { margin: 0; white-space: pre-wrap; word-break: break-all; }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .card-header { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .card-title { font-weight: 600; font-size: 1rem; }
+  .summary { color: var(--text); margin: 0.6rem 0; }
+  .grid-two { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 0.65rem; }
+  .box { background: #090d11; border: 1px solid var(--border); border-radius: 4px; padding: 0.65rem 0.8rem; }
+  .v1-box { border-left: 3px solid var(--ok); }
+  .v2-box { border-left: 3px solid var(--danger); }
+  .box-label { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.35rem; }
+  .tag {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    border: 1px solid var(--border);
+    background: #21262d;
+  }
+  .tag-drift { border-color: var(--danger); color: #ff7b72; }
+  .muted { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>VerDiff Differential Report: <code>urllib3</code> (<code>2.0.2</code> &rarr; <code>2.0.7</code>)</h1>
+  <div class="metrics">
+    <div class="metric-card"><div class="metric-label">Public Callables (v1/v2)</div><div class="metric-val">246 / 246</div></div>
+    <div class="metric-card"><div class="metric-label">Unchanged Signatures</div><div class="metric-val">242</div></div>
+    <div class="metric-card"><div class="metric-label">Static API Changes</div><div class="metric-val">4</div></div>
+    <div class="metric-card"><div class="metric-label">Callables Fuzzed</div><div class="metric-val">120</div></div>
+    <div class="metric-card"><div class="metric-label">Inputs Executed</div><div class="metric-val">5413</div></div>
+    <div class="metric-card"><div class="metric-label">Noise Filtered</div><div class="metric-val">0</div></div>
+    <div class="metric-card"><div class="metric-label">Behavioral Drifts</div><div class="metric-val" style="color: var(--danger);">9</div></div>
+  </div>
+  <h2>Static API Surface Changes (4)</h2>
+  <table><thead><tr><th>Kind</th><th>Module</th><th>Symbol</th><th>Details</th></tr></thead><tbody><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPConnection</code></td><td>parameter &#x27;blocksize&#x27; default value changed (8192 -&gt; 16384)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>HTTPSConnection</code></td><td>parameter &#x27;blocksize&#x27; default value changed (8192 -&gt; 16384)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.connection</code></td><td><code>VerifiedHTTPSConnection</code></td><td>parameter &#x27;blocksize&#x27; default value changed (8192 -&gt; 16384)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>urllib3.util.retry</code></td><td><code>Retry</code></td><td>parameter &#x27;remove_headers_on_redirect&#x27; default value changed (frozenset({&#x27;Authorization&#x27;}) -&gt; frozenset({&#x27;Authorization&#x27;, &#x27;Cookie&#x27;}))</td></tr></tbody></table>
+  <h2>Silent Behavioral Drifts (9)</h2>
+  
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#1 <code>urllib3.connection.HTTPConnection(host: str, port: int | None = None, *, timeout: _TYPE_TIMEOUT = &lt;_TYPE_DEFAULT.token: -1&gt;, source_address: tuple[str, int] | None = None, blocksize: int = 8192, socket_options: None | connection._TYPE_SOCKET_OPTIONS = [(6, 1, 1)], proxy: Url | None = None, proxy_config: ProxyConfig | None = None) -&gt; HTTPConnection</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on &lt;urllib3.connection.HTTPConnection object at 0xADDR&gt; (urllib3.connection.HTTPConnection): attribute &#x27;blocksize&#x27; changed (8192 -&gt; 16384)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>HTTPConnection(&#x27;https://example.com/path?a=1&amp;b=2#sec&#x27;, 0)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (1 steps)</div>
+                      <pre><code>HTTPConnection(&#x27;&#x27;, 0)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 2.0.2 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connection.HTTPConnection object at 0xADDR&gt; (type: urllib3.connection.HTTPConnection)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connection.HTTPConnection object at 0xADDR&gt; (type: urllib3.connection.HTTPConnection)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#2 <code>urllib3.connection.HTTPSConnection(host: str, port: int | None = None, *, timeout: _TYPE_TIMEOUT = &lt;_TYPE_DEFAULT.token: -1&gt;, source_address: tuple[str, int] | None = None, blocksize: int = 8192, socket_options: None | connection._TYPE_SOCKET_OPTIONS = [(6, 1, 1)], proxy: Url | None = None, proxy_config: ProxyConfig | None = None, cert_reqs: int | str | None = None, assert_hostname: None | str | Literal[False] = None, assert_fingerprint: str | None = None, server_hostname: str | None = None, ssl_context: ssl.SSLContext | None = None, ca_certs: str | None = None, ca_cert_dir: str | None = None, ca_cert_data: None | str | bytes = None, ssl_minimum_version: int | None = None, ssl_maximum_version: int | None = None, ssl_version: int | str | None = None, cert_file: str | None = None, key_file: str | None = None, key_password: str | None = None) -&gt; HTTPSConnection</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on &lt;urllib3.connection.HTTPSConnection object at 0xADDR&gt; (urllib3.connection.HTTPSConnection): attribute &#x27;blocksize&#x27; changed (8192 -&gt; 16384)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>HTTPSConnection(&#x27;https://example.com/path?a=1&amp;b=2#sec&#x27;, 0)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (1 steps)</div>
+                      <pre><code>HTTPSConnection(&#x27;&#x27;, 0)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 2.0.2 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connection.HTTPSConnection object at 0xADDR&gt; (type: urllib3.connection.HTTPSConnection)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connection.HTTPSConnection object at 0xADDR&gt; (type: urllib3.connection.HTTPSConnection)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#3 <code>urllib3.connection.VerifiedHTTPSConnection(host: str, port: int | None = None, *, timeout: _TYPE_TIMEOUT = &lt;_TYPE_DEFAULT.token: -1&gt;, source_address: tuple[str, int] | None = None, blocksize: int = 8192, socket_options: None | connection._TYPE_SOCKET_OPTIONS = [(6, 1, 1)], proxy: Url | None = None, proxy_config: ProxyConfig | None = None, cert_reqs: int | str | None = None, assert_hostname: None | str | Literal[False] = None, assert_fingerprint: str | None = None, server_hostname: str | None = None, ssl_context: ssl.SSLContext | None = None, ca_certs: str | None = None, ca_cert_dir: str | None = None, ca_cert_data: None | str | bytes = None, ssl_minimum_version: int | None = None, ssl_maximum_version: int | None = None, ssl_version: int | str | None = None, cert_file: str | None = None, key_file: str | None = None, key_password: str | None = None) -&gt; VerifiedHTTPSConnection</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on &lt;urllib3.connection.HTTPSConnection object at 0xADDR&gt; (urllib3.connection.HTTPSConnection): attribute &#x27;blocksize&#x27; changed (8192 -&gt; 16384)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>VerifiedHTTPSConnection(&#x27;https://example.com/path?a=1&amp;b=2#sec&#x27;, 0)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (1 steps)</div>
+                      <pre><code>VerifiedHTTPSConnection(&#x27;&#x27;, 0)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 2.0.2 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connection.HTTPSConnection object at 0xADDR&gt; (type: urllib3.connection.HTTPSConnection)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connection.HTTPSConnection object at 0xADDR&gt; (type: urllib3.connection.HTTPSConnection)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#4 <code>urllib3.connectionpool.HTTPConnectionPool(host: str, port: int | None = None, timeout: _TYPE_TIMEOUT | None = &lt;_TYPE_DEFAULT.token: -1&gt;, maxsize: int = 1, block: bool = False, headers: typing.Mapping[str, str] | None = None, retries: Retry | bool | int | None = None, _proxy: Url | None = None, _proxy_headers: typing.Mapping[str, str] | None = None, _proxy_config: ProxyConfig | None = None, **conn_kw: typing.Any) -&gt; HTTPConnectionPool</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on &lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt; (urllib3.connectionpool.HTTPConnectionPool): attribute &#x27;retries.remove_headers_on_redirect&#x27; changed (frozenset([&#x27;authorization&#x27;]) -&gt; frozenset([&#x27;authorization&#x27;, &#x27;cookie&#x27;]))</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>baseline_required</code>)</div>
+                      <pre><code>HTTPConnectionPool(&#x27;https://example.com/path?a=1&amp;b=2#sec&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (5 steps)</div>
+                      <pre><code>HTTPConnectionPool(&#x27;h&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 2.0.2 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt; (type: urllib3.connectionpool.HTTPConnectionPool)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt; (type: urllib3.connectionpool.HTTPConnectionPool)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#5 <code>urllib3.connectionpool.HTTPSConnectionPool(host: str, port: int | None = None, timeout: _TYPE_TIMEOUT | None = &lt;_TYPE_DEFAULT.token: -1&gt;, maxsize: int = 1, block: bool = False, headers: typing.Mapping[str, str] | None = None, retries: Retry | bool | int | None = None, _proxy: Url | None = None, _proxy_headers: typing.Mapping[str, str] | None = None, key_file: str | None = None, cert_file: str | None = None, cert_reqs: int | str | None = None, key_password: str | None = None, ca_certs: str | None = None, ssl_version: int | str | None = None, ssl_minimum_version: ssl.TLSVersion | None = None, ssl_maximum_version: ssl.TLSVersion | None = None, assert_hostname: str | Literal[False] | None = None, assert_fingerprint: str | None = None, ca_cert_dir: str | None = None, **conn_kw: typing.Any) -&gt; HTTPSConnectionPool</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on &lt;urllib3.connectionpool.HTTPSConnectionPool object at 0xADDR&gt; (urllib3.connectionpool.HTTPSConnectionPool): attribute &#x27;retries.remove_headers_on_redirect&#x27; changed (frozenset([&#x27;authorization&#x27;]) -&gt; frozenset([&#x27;authorization&#x27;, &#x27;cookie&#x27;]))</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>baseline_required</code>)</div>
+                      <pre><code>HTTPSConnectionPool(&#x27;https://example.com/path?a=1&amp;b=2#sec&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (5 steps)</div>
+                      <pre><code>HTTPSConnectionPool(&#x27;h&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 2.0.2 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connectionpool.HTTPSConnectionPool object at 0xADDR&gt; (type: urllib3.connectionpool.HTTPSConnectionPool)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN &lt;urllib3.connectionpool.HTTPSConnectionPool object at 0xADDR&gt; (type: urllib3.connectionpool.HTTPSConnectionPool)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#6 <code>urllib3.poolmanager.PoolManager.&lt;stateful_chain&gt;[stateful chain: clear, connection_from_context, connection_from_host, connection_from_pool_key]</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on [&lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt;] (builtins.list): attribute &#x27;[0].retries.remove_headers_on_redirect&#x27; changed (frozenset([&#x27;authorization&#x27;]) -&gt; frozenset([&#x27;authorization&#x27;, &#x27;cookie&#x27;]))</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>stateful_call_chain</code>)</div>
+                      <pre><code>obj = PoolManager(); obj.clear(); obj.connection_from_host(&#x27;a&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (1 steps)</div>
+                      <pre><code>obj = PoolManager(); obj.connection_from_host(&#x27;a&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 2.0.2 Outcome</div>
+                      <pre><code>RETURN [&lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt;] (type: builtins.list)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN [&lt;urllib3.connectionpool.HTTPConnectionPool object at 0xADDR&gt;] (type: builtins.list)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#7 <code>urllib3.poolmanager.ProxyManager.&lt;stateful_chain&gt;[stateful chain: clear, connection_from_context, connection_from_host, connection_from_pool_key]</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on [&lt;urllib3.connectionpool.HTTPSConnectionPool object at 0xADDR&gt;] (builtins.list): attribute &#x27;[0].retries.remove_headers_on_redirect&#x27; changed (frozenset([&#x27;authorization&#x27;]) -&gt; frozenset([&#x27;authorization&#x27;, &#x27;cookie&#x27;]))</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>stateful_call_chain</code>)</div>
+                      <pre><code>obj = ProxyManager(&#x27;https://example.com/path?a=1&amp;b=2#sec&#x27;); obj.clear(); obj.connection_from_host(&#x27;a&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (2 steps)</div>
+                      <pre><code>obj = ProxyManager(&#x27;https://example.com/path?a=1&amp;b=2#sec&#x27;); obj.connection_from_host(&#x27;&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 2.0.2 Outcome</div>
+                      <pre><code>RETURN [&lt;urllib3.connectionpool.HTTPSConnectionPool object at 0xADDR&gt;] (type: builtins.list)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN [&lt;urllib3.connectionpool.HTTPSConnectionPool object at 0xADDR&gt;] (type: builtins.list)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#8 <code>urllib3.util.retry.Retry(total: bool | int | None = 10, connect: int | None = None, read: int | None = None, redirect: bool | int | None = None, status: int | None = None, other: int | None = None, allowed_methods: typing.Collection[str] | None = frozenset({&#x27;GET&#x27;, &#x27;DELETE&#x27;, &#x27;PUT&#x27;, &#x27;HEAD&#x27;, &#x27;TRACE&#x27;, &#x27;OPTIONS&#x27;}), status_forcelist: typing.Collection[int] | None = None, backoff_factor: float = 0, backoff_max: float = 120, raise_on_redirect: bool = True, raise_on_status: bool = True, history: tuple[RequestHistory, ...] | None = None, respect_retry_after_header: bool = True, remove_headers_on_redirect: typing.Collection[str] = frozenset({&#x27;Authorization&#x27;}), backoff_jitter: float = 0.0) -&gt; Retry</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on Retry(total=10, connect=None, read=None, redirect=None, status=None) (urllib3.util.retry.Retry): attribute &#x27;remove_headers_on_redirect&#x27; changed (frozenset([&#x27;authorization&#x27;]) -&gt; frozenset([&#x27;authorization&#x27;, &#x27;cookie&#x27;]))</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>defaults_only</code>)</div>
+                      <pre><code>Retry()</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>Retry()</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 2.0.2 Outcome</div>
+                      <pre><code>RETURN Retry(total=10, connect=None, read=None, redirect=None, status=None) (type: urllib3.util.retry.Retry)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN Retry(total=10, connect=None, read=None, redirect=None, status=None) (type: urllib3.util.retry.Retry)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#9 <code>urllib3.util.retry.Retry.&lt;stateful_chain&gt;[stateful chain: get_backoff_time, get_retry_after, increment, is_exhausted]</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on [Retry(total=9, connect=None, read=None, redirect=None, status=None)] (builtins.list): attribute &#x27;[0].remove_headers_on_redirect&#x27; changed (frozenset([&#x27;authorization&#x27;]) -&gt; frozenset([&#x27;authorization&#x27;, &#x27;cookie&#x27;]))</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>stateful_call_chain</code>)</div>
+                      <pre><code>obj = Retry(); obj.get_backoff_time(); obj.increment()</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (1 steps)</div>
+                      <pre><code>obj = Retry(); obj.increment()</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 2.0.2 Outcome</div>
+                      <pre><code>RETURN [Retry(total=9, connect=None, read=None, redirect=None, status=None)] (type: builtins.list)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 2.0.7 Outcome</div>
+                      <pre><code>RETURN [Retry(total=9, connect=None, read=None, redirect=None, status=None)] (type: builtins.list)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+</div>
+</body>
+</html>

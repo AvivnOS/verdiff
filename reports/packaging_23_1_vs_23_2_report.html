@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VerDiff Report: packaging (23.1 vs 23.2)</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --panel: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+    --danger: #f85149;
+    --ok: #3fb950;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 2rem;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+  }
+  .container { max-width: 1180px; margin: 0 auto; }
+  h1, h2 { border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.75rem;
+    margin: 1.25rem 0 2rem;
+  }
+  .metric-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+  }
+  .metric-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; }
+  .metric-val { font-size: 1.35rem; font-weight: 600; margin-top: 0.25rem; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; background: var(--panel); border: 1px solid var(--border); }
+  th, td { text-align: left; padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+  th { color: var(--muted); font-weight: 600; background: #11151c; }
+  code, pre { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.86rem; }
+  pre { margin: 0; white-space: pre-wrap; word-break: break-all; }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .card-header { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .card-title { font-weight: 600; font-size: 1rem; }
+  .summary { color: var(--text); margin: 0.6rem 0; }
+  .grid-two { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 0.65rem; }
+  .box { background: #090d11; border: 1px solid var(--border); border-radius: 4px; padding: 0.65rem 0.8rem; }
+  .v1-box { border-left: 3px solid var(--ok); }
+  .v2-box { border-left: 3px solid var(--danger); }
+  .box-label { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.35rem; }
+  .tag {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    border: 1px solid var(--border);
+    background: #21262d;
+  }
+  .tag-drift { border-color: var(--danger); color: #ff7b72; }
+  .muted { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>VerDiff Differential Report: <code>packaging</code> (<code>23.1</code> &rarr; <code>23.2</code>)</h1>
+  <div class="metrics">
+    <div class="metric-card"><div class="metric-label">Public Callables (v1/v2)</div><div class="metric-val">31 / 35</div></div>
+    <div class="metric-card"><div class="metric-label">Unchanged Signatures</div><div class="metric-val">30</div></div>
+    <div class="metric-card"><div class="metric-label">Static API Changes</div><div class="metric-val">1</div></div>
+    <div class="metric-card"><div class="metric-label">Callables Fuzzed</div><div class="metric-val">34</div></div>
+    <div class="metric-card"><div class="metric-label">Inputs Executed</div><div class="metric-val">1563</div></div>
+    <div class="metric-card"><div class="metric-label">Noise Filtered</div><div class="metric-val">0</div></div>
+    <div class="metric-card"><div class="metric-label">Behavioral Drifts</div><div class="metric-val" style="color: var(--danger);">5</div></div>
+  </div>
+  <h2>Static API Surface Changes (5)</h2>
+  <table><thead><tr><th>Kind</th><th>Module</th><th>Symbol</th><th>Details</th></tr></thead><tbody><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>packaging.utils</code></td><td><code>canonicalize_name</code></td><td>parameter count changed (1 -&gt; 2)</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>packaging.metadata</code></td><td><code>Metadata</code></td><td>Added public class &#x27;packaging.metadata.Metadata&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>packaging.metadata</code></td><td><code>Metadata.from_email</code></td><td>Added public classmethod &#x27;packaging.metadata.Metadata.from_email&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>packaging.metadata</code></td><td><code>Metadata.from_raw</code></td><td>Added public classmethod &#x27;packaging.metadata.Metadata.from_raw&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>packaging.utils</code></td><td><code>is_normalized_name</code></td><td>Added public function &#x27;packaging.utils.is_normalized_name&#x27;</td></tr></tbody></table>
+  <h2>Silent Behavioral Drifts (5)</h2>
+  
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#1 <code>packaging.markers.Marker(marker: str) -&gt; Marker</code></span>
+                    <span class="tag tag-drift">exception_type_drift / pass_to_fail</span>
+                  </div>
+                  <p class="summary">v1 returned &lt;Marker(&#x27;os_name == &quot;a&quot;&#x27;)&gt; (packaging.markers.Marker), but v2 raised InvalidMarker: Expected end of marker expression
+    os_name == &quot;a&quot; b
+                   ^</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_required</code>)</div>
+                      <pre><code>Marker(&#x27;os_name == &quot;a&quot; b&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>Marker(&#x27;os_name == &quot;a&quot; b&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 23.1 Outcome</div>
+                      <pre><code>RETURN &lt;Marker(&#x27;os_name == &quot;a&quot;&#x27;)&gt; (type: packaging.markers.Marker)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 23.2 Outcome</div>
+                      <pre><code>RAISE InvalidMarker: Expected end of marker expression
+    os_name == &quot;a&quot; b
+                   ^</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#2 <code>packaging.requirements.Requirement(requirement_string: str) -&gt; Requirement</code></span>
+                    <span class="tag tag-drift">exception_type_drift / fail_to_pass</span>
+                  </div>
+                  <p class="summary">v1 raised InvalidRequirement (Invalid URL: h), but v2 returned &lt;Requirement(&#x27;g@ h&#x27;)&gt; (packaging.requirements.Requirement)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_required</code>)</div>
+                      <pre><code>Requirement(&#x27;pkg @ http:///path&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (5 steps)</div>
+                      <pre><code>Requirement(&#x27;g @ h&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 23.1 Outcome</div>
+                      <pre><code>RAISE InvalidRequirement: Invalid URL: h</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 23.2 Outcome</div>
+                      <pre><code>RETURN &lt;Requirement(&#x27;g@ h&#x27;)&gt; (type: packaging.requirements.Requirement)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#3 <code>packaging.markers.Marker.evaluate(environment: Optional[Dict[str, str]] = None) -&gt; bool</code></span>
+                    <span class="tag tag-drift">exception_type_drift / pass_to_fail</span>
+                  </div>
+                  <p class="summary">v1 returned False (builtins.bool), but v2 raised InvalidMarker: Expected end of marker expression
+    os_name == &quot;a&quot; b
+                   ^</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>defaults_only</code>)</div>
+                      <pre><code>Marker(&#x27;os_name == &quot;a&quot; b&#x27;).evaluate()</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>Marker(&#x27;os_name == &quot;a&quot; b&#x27;).evaluate()</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 23.1 Outcome</div>
+                      <pre><code>RETURN False (type: builtins.bool)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 23.2 Outcome</div>
+                      <pre><code>RAISE InvalidMarker: Expected end of marker expression
+    os_name == &quot;a&quot; b
+                   ^</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#4 <code>packaging.markers.Marker.evaluate(environment: Optional[Dict[str, str]] = None) -&gt; bool</code></span>
+                    <span class="tag tag-drift">exception_type_drift / exception_class_changed</span>
+                  </div>
+                  <p class="summary">Exception type changed from ValueError (&#x27;dictionary update sequence element #0 has length 1; 2 is required&#x27;) in v1 to InvalidMarker (&#x27;Expected end of marker expression
+    os_name == &quot;a&quot; b
+                   ^&#x27;) in v2</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>Marker(&#x27;os_name == &quot;a&quot; b&#x27;).evaluate(&#x27;_diff&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (2 steps)</div>
+                      <pre><code>Marker(&#x27;os_name == &quot;a&quot; b&#x27;).evaluate(&#x27;_&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 23.1 Outcome</div>
+                      <pre><code>RAISE ValueError: dictionary update sequence element #0 has length 1; 2 is required</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 23.2 Outcome</div>
+                      <pre><code>RAISE InvalidMarker: Expected end of marker expression
+    os_name == &quot;a&quot; b
+                   ^</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#5 <code>packaging.markers.Marker.evaluate(environment: Optional[Dict[str, str]] = None) -&gt; bool</code></span>
+                    <span class="tag tag-drift">exception_type_drift / exception_class_changed</span>
+                  </div>
+                  <p class="summary">Exception type changed from TypeError (&#x27;&#x27;int&#x27; object is not iterable&#x27;) in v1 to InvalidMarker (&#x27;Expected end of marker expression
+    os_name == &quot;a&quot; b
+                   ^&#x27;) in v2</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>Marker(&#x27;os_name == &quot;a&quot; b&#x27;).evaluate(0)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>Marker(&#x27;os_name == &quot;a&quot; b&#x27;).evaluate(0)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 23.1 Outcome</div>
+                      <pre><code>RAISE TypeError: &#x27;int&#x27; object is not iterable</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 23.2 Outcome</div>
+                      <pre><code>RAISE InvalidMarker: Expected end of marker expression
+    os_name == &quot;a&quot; b
+                   ^</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+</div>
+</body>
+</html>

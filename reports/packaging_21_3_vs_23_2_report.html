@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VerDiff Report: packaging (21.3 vs 23.2)</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --panel: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+    --danger: #f85149;
+    --ok: #3fb950;
+    --warn: #d29922;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 2rem;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+  }
+  .container { max-width: 1180px; margin: 0 auto; }
+  h1, h2 { border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 0.75rem;
+    margin: 1.25rem 0 2rem;
+  }
+  .metric-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+  }
+  .metric-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; }
+  .metric-val { font-size: 1.35rem; font-weight: 600; margin-top: 0.25rem; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; background: var(--panel); border: 1px solid var(--border); }
+  th, td { text-align: left; padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+  th { color: var(--muted); font-weight: 600; background: #11151c; }
+  code, pre { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.86rem; }
+  pre { margin: 0; white-space: pre-wrap; word-break: break-all; }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .card-header { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .card-title { font-weight: 600; font-size: 1rem; }
+  .summary { color: var(--text); margin: 0.6rem 0; }
+  .grid-two { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 0.65rem; }
+  .box { background: #090d11; border: 1px solid var(--border); border-radius: 4px; padding: 0.65rem 0.8rem; }
+  .v1-box { border-left: 3px solid var(--ok); }
+  .v2-box { border-left: 3px solid var(--danger); }
+  .box-label { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.35rem; }
+  .tag {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    border: 1px solid var(--border);
+    background: #21262d;
+  }
+  .tag-drift { border-color: var(--danger); color: #ff7b72; }
+  .muted { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>VerDiff Differential Report: <code>packaging</code> (<code>21.3</code> &rarr; <code>23.2</code>)</h1>
+  <div class="metrics">
+    <div class="metric-card"><div class="metric-label">Public Callables (v1/v2)</div><div class="metric-val">21 / 18</div></div>
+    <div class="metric-card"><div class="metric-label">Unchanged Signatures</div><div class="metric-val">9</div></div>
+    <div class="metric-card"><div class="metric-label">Static API Changes</div><div class="metric-val">12</div></div>
+    <div class="metric-card"><div class="metric-label">Callables Fuzzed</div><div class="metric-val">17</div></div>
+    <div class="metric-card"><div class="metric-label">Inputs Executed</div><div class="metric-val">538</div></div>
+    <div class="metric-card"><div class="metric-label">Behavioral Drifts</div><div class="metric-val" style="color: var(--danger);">6</div></div>
+  </div>
+  <h2>Static API Surface Changes (13)</h2>
+  <table><thead><tr><th>Kind</th><th>Module</th><th>Symbol</th><th>Details</th></tr></thead><tbody><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>packaging.specifiers</code></td><td><code>BaseSpecifier.filter</code></td><td>parameter &#x27;iterable&#x27; type annotation changed (Iterable[~VersionTypeVar] -&gt; Iterable[~UnparsedVersionVar]); return annotation changed (Iterable[~VersionTypeVar] -&gt; Iterator[~UnparsedVersionVar])</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>packaging.specifiers</code></td><td><code>Specifier.contains</code></td><td>parameter &#x27;item&#x27; type annotation changed (Union[packaging.version.Version, packaging.version.LegacyVersion, str] -&gt; Union[packaging.version.Version, str])</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>packaging.specifiers</code></td><td><code>Specifier.filter</code></td><td>parameter &#x27;iterable&#x27; type annotation changed (Iterable[~VersionTypeVar] -&gt; Iterable[~UnparsedVersionVar]); return annotation changed (Iterable[~VersionTypeVar] -&gt; Iterator[~UnparsedVersionVar])</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>packaging.specifiers</code></td><td><code>SpecifierSet.contains</code></td><td>parameter count changed (2 -&gt; 3)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>packaging.specifiers</code></td><td><code>SpecifierSet.filter</code></td><td>parameter &#x27;iterable&#x27; type annotation changed (Iterable[~VersionTypeVar] -&gt; Iterable[~UnparsedVersionVar]); return annotation changed (Iterable[~VersionTypeVar] -&gt; Iterator[~UnparsedVersionVar])</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>packaging.utils</code></td><td><code>canonicalize_name</code></td><td>parameter count changed (1 -&gt; 2)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>packaging.utils</code></td><td><code>canonicalize_version</code></td><td>parameter count changed (1 -&gt; 2)</td></tr><tr><td><span class='tag tag-signature_changed'>signature_changed</span></td><td><code>packaging.version</code></td><td><code>parse</code></td><td>return annotation changed (Union[ForwardRef(&#x27;LegacyVersion&#x27;), ForwardRef(&#x27;Version&#x27;)] -&gt; Version)</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>packaging.specifiers</code></td><td><code>LegacySpecifier</code></td><td>Removed public class &#x27;packaging.specifiers.LegacySpecifier&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>packaging.specifiers</code></td><td><code>LegacySpecifier.contains</code></td><td>Removed public method &#x27;packaging.specifiers.LegacySpecifier.contains&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>packaging.specifiers</code></td><td><code>LegacySpecifier.filter</code></td><td>Removed public method &#x27;packaging.specifiers.LegacySpecifier.filter&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>packaging.version</code></td><td><code>LegacyVersion</code></td><td>Removed public class &#x27;packaging.version.LegacyVersion&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>packaging.utils</code></td><td><code>is_normalized_name</code></td><td>Added public function &#x27;packaging.utils.is_normalized_name&#x27;</td></tr></tbody></table>
+  <h2>Silent Behavioral Drifts (6)</h2>
+  
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#1 <code>packaging.specifiers.Specifier(spec: str = &#x27;&#x27;, prereleases: Optional[bool] = None) -&gt; Specifier</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on &lt;Specifier(&#x27;===1.&#x27;)&gt; (packaging.specifiers.Specifier): attribute &#x27;prereleases&#x27; changed (False -&gt; &#x27;InvalidVersion&#x27;)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>Specifier(&#x27;===1.0-legacy&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (3 steps)</div>
+                      <pre><code>Specifier(&#x27;===1.&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 21.3 Outcome</div>
+                      <pre><code>RETURN &lt;Specifier(&#x27;===1.&#x27;)&gt; (type: packaging.specifiers.Specifier)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 23.2 Outcome</div>
+                      <pre><code>RETURN &lt;Specifier(&#x27;===1.&#x27;)&gt; (type: packaging.specifiers.Specifier)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#2 <code>packaging.specifiers.SpecifierSet(specifiers: str = &#x27;&#x27;, prereleases: Optional[bool] = None) -&gt; SpecifierSet</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on &lt;SpecifierSet(&#x27;===1.&#x27;)&gt; (packaging.specifiers.SpecifierSet): attribute &#x27;prereleases&#x27; changed (False -&gt; &#x27;InvalidVersion&#x27;)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>SpecifierSet(&#x27;===1.0-legacy&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (3 steps)</div>
+                      <pre><code>SpecifierSet(&#x27;===1.&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 21.3 Outcome</div>
+                      <pre><code>RETURN &lt;SpecifierSet(&#x27;===1.&#x27;)&gt; (type: packaging.specifiers.SpecifierSet)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 23.2 Outcome</div>
+                      <pre><code>RETURN &lt;SpecifierSet(&#x27;===1.&#x27;)&gt; (type: packaging.specifiers.SpecifierSet)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#3 <code>packaging.specifiers.SpecifierSet.contains(item: Union[packaging.version.Version, packaging.version.LegacyVersion, str], prereleases: Optional[bool] = None) -&gt; bool</code></span>
+                    <span class="tag tag-drift">exception_type_drift / pass_to_fail</span>
+                  </div>
+                  <p class="summary">v1 returned True (builtins.bool), but v2 raised InvalidVersion: Invalid version: &#x27;&#x27;</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>baseline_required</code>)</div>
+                      <pre><code>SpecifierSet.contains(&#x27;,&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (1 steps)</div>
+                      <pre><code>SpecifierSet.contains(&#x27;&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 21.3 Outcome</div>
+                      <pre><code>RETURN True (type: builtins.bool)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 23.2 Outcome</div>
+                      <pre><code>RAISE InvalidVersion: Invalid version: &#x27;&#x27;</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#4 <code>packaging.specifiers.SpecifierSet.filter(iterable: Iterable[~VersionTypeVar], prereleases: Optional[bool] = None) -&gt; Iterable[~VersionTypeVar]</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return value drift: v1 returned [] (builtins.list) != v2 returned &lt;list_iterator object at 0xADDR&gt; (builtins.list_iterator)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>baseline_required</code>)</div>
+                      <pre><code>SpecifierSet.filter([])</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>SpecifierSet.filter([])</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 21.3 Outcome</div>
+                      <pre><code>RETURN [] (type: builtins.list)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 23.2 Outcome</div>
+                      <pre><code>RETURN &lt;list_iterator object at 0xADDR&gt; (type: builtins.list_iterator)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#5 <code>packaging.specifiers.SpecifierSet.filter(iterable: Iterable[~VersionTypeVar], prereleases: Optional[bool] = None) -&gt; Iterable[~VersionTypeVar]</code></span>
+                    <span class="tag tag-drift">exception_type_drift / pass_to_fail</span>
+                  </div>
+                  <p class="summary">v1 returned [] (builtins.list), but v2 raised InvalidVersion: Invalid version: &#x27;&#x27;</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_required</code>)</div>
+                      <pre><code>SpecifierSet.filter([&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;])</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (2 steps)</div>
+                      <pre><code>SpecifierSet.filter([&#x27;&#x27;])</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 21.3 Outcome</div>
+                      <pre><code>RETURN [] (type: builtins.list)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 23.2 Outcome</div>
+                      <pre><code>RAISE InvalidVersion: Invalid version: &#x27;&#x27;</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#6 <code>packaging.version.parse(version: str) -&gt; Union[ForwardRef(&#x27;LegacyVersion&#x27;), ForwardRef(&#x27;Version&#x27;)]</code></span>
+                    <span class="tag tag-drift">exception_type_drift / pass_to_fail</span>
+                  </div>
+                  <p class="summary">v1 returned &lt;LegacyVersion(&#x27;&#x27;)&gt; (packaging.version.LegacyVersion), but v2 raised InvalidVersion: Invalid version: &#x27;&#x27;</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_required</code>)</div>
+                      <pre><code>parse(&#x27;שלום עולם \u202eRTL\u202c&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (1 steps)</div>
+                      <pre><code>parse(&#x27;&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 21.3 Outcome</div>
+                      <pre><code>RETURN &lt;LegacyVersion(&#x27;&#x27;)&gt; (type: packaging.version.LegacyVersion)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 23.2 Outcome</div>
+                      <pre><code>RAISE InvalidVersion: Invalid version: &#x27;&#x27;</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+</div>
+</body>
+</html>

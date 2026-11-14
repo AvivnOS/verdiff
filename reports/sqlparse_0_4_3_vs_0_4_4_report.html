@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VerDiff Report: sqlparse (0.4.3 vs 0.4.4)</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --panel: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+    --danger: #f85149;
+    --ok: #3fb950;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 2rem;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+  }
+  .container { max-width: 1180px; margin: 0 auto; }
+  h1, h2 { border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.75rem;
+    margin: 1.25rem 0 2rem;
+  }
+  .metric-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+  }
+  .metric-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; }
+  .metric-val { font-size: 1.35rem; font-weight: 600; margin-top: 0.25rem; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; background: var(--panel); border: 1px solid var(--border); }
+  th, td { text-align: left; padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+  th { color: var(--muted); font-weight: 600; background: #11151c; }
+  code, pre { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.86rem; }
+  pre { margin: 0; white-space: pre-wrap; word-break: break-all; }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .card-header { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .card-title { font-weight: 600; font-size: 1rem; }
+  .summary { color: var(--text); margin: 0.6rem 0; }
+  .grid-two { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 0.65rem; }
+  .box { background: #090d11; border: 1px solid var(--border); border-radius: 4px; padding: 0.65rem 0.8rem; }
+  .v1-box { border-left: 3px solid var(--ok); }
+  .v2-box { border-left: 3px solid var(--danger); }
+  .box-label { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.35rem; }
+  .tag {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    border: 1px solid var(--border);
+    background: #21262d;
+  }
+  .tag-drift { border-color: var(--danger); color: #ff7b72; }
+  .muted { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>VerDiff Differential Report: <code>sqlparse</code> (<code>0.4.3</code> &rarr; <code>0.4.4</code>)</h1>
+  <div class="metrics">
+    <div class="metric-card"><div class="metric-label">Public Callables (v1/v2)</div><div class="metric-val">556 / 560</div></div>
+    <div class="metric-card"><div class="metric-label">Unchanged Signatures</div><div class="metric-val">554</div></div>
+    <div class="metric-card"><div class="metric-label">Static API Changes</div><div class="metric-val">2</div></div>
+    <div class="metric-card"><div class="metric-label">Callables Fuzzed</div><div class="metric-val">120</div></div>
+    <div class="metric-card"><div class="metric-label">Inputs Executed</div><div class="metric-val">4262</div></div>
+    <div class="metric-card"><div class="metric-label">Noise Filtered</div><div class="metric-val">0</div></div>
+    <div class="metric-card"><div class="metric-label">Behavioral Drifts</div><div class="metric-val" style="color: var(--danger);">22</div></div>
+  </div>
+  <h2>Static API Surface Changes (8)</h2>
+  <table><thead><tr><th>Kind</th><th>Module</th><th>Symbol</th><th>Details</th></tr></thead><tbody><tr><td><span class='tag tag-removed'>removed</span></td><td><code>sqlparse.compat</code></td><td><code>unicode_compatible</code></td><td>Removed public function &#x27;sqlparse.compat.unicode_compatible&#x27;</td></tr><tr><td><span class='tag tag-removed'>removed</span></td><td><code>sqlparse.keywords</code></td><td><code>is_keyword</code></td><td>Removed public function &#x27;sqlparse.keywords.is_keyword&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>sqlparse.lexer</code></td><td><code>Lexer.add_keywords</code></td><td>Added public method &#x27;sqlparse.lexer.Lexer.add_keywords&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>sqlparse.lexer</code></td><td><code>Lexer.clear</code></td><td>Added public method &#x27;sqlparse.lexer.Lexer.clear&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>sqlparse.lexer</code></td><td><code>Lexer.default_initialization</code></td><td>Added public method &#x27;sqlparse.lexer.Lexer.default_initialization&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>sqlparse.lexer</code></td><td><code>Lexer.get_default_instance</code></td><td>Added public classmethod &#x27;sqlparse.lexer.Lexer.get_default_instance&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>sqlparse.lexer</code></td><td><code>Lexer.is_keyword</code></td><td>Added public method &#x27;sqlparse.lexer.Lexer.is_keyword&#x27;</td></tr><tr><td><span class='tag tag-added'>added</span></td><td><code>sqlparse.lexer</code></td><td><code>Lexer.set_SQL_REGEX</code></td><td>Added public method &#x27;sqlparse.lexer.Lexer.set_SQL_REGEX&#x27;</td></tr></tbody></table>
+  <h2>Silent Behavioral Drifts (22)</h2>
+  
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#1 <code>sqlparse.lexer.Lexer.get_tokens(text, encoding = None)</code></span>
+                    <span class="tag tag-drift">exception_type_drift / pass_to_fail</span>
+                  </div>
+                  <p class="summary">v1 returned [(Token.Operator.Comparison, &#x27;&lt;&#x27;)] (builtins.list), but v2 raised AttributeError: &#x27;Lexer&#x27; object has no attribute &#x27;_SQL_REGEX&#x27;</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>baseline_required</code>)</div>
+                      <pre><code>Lexer.get_tokens(&#x27;&lt;p&gt;Hello &lt;b&gt;World&lt;/b&gt;&lt;/p&gt;&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (4 steps)</div>
+                      <pre><code>Lexer.get_tokens(&#x27;&lt;&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 0.4.3 Outcome</div>
+                      <pre><code>RETURN [(Token.Operator.Comparison, &#x27;&lt;&#x27;)] (type: builtins.list)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 0.4.4 Outcome</div>
+                      <pre><code>RAISE AttributeError: &#x27;Lexer&#x27; object has no attribute &#x27;_SQL_REGEX&#x27;</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#2 <code>sqlparse.lexer.tokenize(sql, encoding = None)</code></span>
+                    <span class="tag tag-drift">latency_regression / 124.0x_latency_shift</span>
+                  </div>
+                  <p class="summary">Latency shift (124.0x faster in v2 / pathological in v1): v1 median 40.13ms -&gt; v2 median 0.32ms</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>baseline_required</code>)</div>
+                      <pre><code>tokenize(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>tokenize(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 0.4.3 Outcome</div>
+                      <pre><code>RETURN [(Token.Error, &quot;&#x27;&quot;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token (type: builtins.list) [40.13ms median]</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 0.4.4 Outcome</div>
+                      <pre><code>RETURN [(Token.Error, &quot;&#x27;&quot;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token (type: builtins.list) [0.32ms median]</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#3 <code>sqlparse.lexer.tokenize(sql, encoding = None)</code></span>
+                    <span class="tag tag-drift">latency_regression / 120.7x_latency_shift</span>
+                  </div>
+                  <p class="summary">Latency shift (120.7x faster in v2 / pathological in v1): v1 median 40.25ms -&gt; v2 median 0.33ms</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>tokenize(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;, None)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>tokenize(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;, None)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 0.4.3 Outcome</div>
+                      <pre><code>RETURN [(Token.Error, &quot;&#x27;&quot;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token (type: builtins.list) [40.25ms median]</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 0.4.4 Outcome</div>
+                      <pre><code>RETURN [(Token.Error, &quot;&#x27;&quot;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token (type: builtins.list) [0.33ms median]</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#4 <code>sqlparse.lexer.tokenize(sql, encoding = None)</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return value drift: v1 returned [(Token.Operator.Comparison, &#x27;IN&#x27;)] (builtins.list) != v2 returned [(Token.Keyword, &#x27;IN&#x27;)] (builtins.list)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_required</code>)</div>
+                      <pre><code>tokenize(&#x27;SELECT 1 WHERE a IN (1);&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (5 steps)</div>
+                      <pre><code>tokenize(&#x27;IN&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 0.4.3 Outcome</div>
+                      <pre><code>RETURN [(Token.Operator.Comparison, &#x27;IN&#x27;)] (type: builtins.list)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 0.4.4 Outcome</div>
+                      <pre><code>RETURN [(Token.Keyword, &#x27;IN&#x27;)] (type: builtins.list)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#5 <code>sqlparse.lexer.tokenize(sql, encoding = None)</code></span>
+                    <span class="tag tag-drift">latency_regression / 123.6x_latency_shift</span>
+                  </div>
+                  <p class="summary">Latency shift (123.6x faster in v2 / pathological in v1): v1 median 39.82ms -&gt; v2 median 0.32ms</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>tokenize(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;, &#x27; &#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>tokenize(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;, &#x27; &#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 0.4.3 Outcome</div>
+                      <pre><code>RETURN [(Token.Error, &quot;&#x27;&quot;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token (type: builtins.list) [39.82ms median]</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 0.4.4 Outcome</div>
+                      <pre><code>RETURN [(Token.Error, &quot;&#x27;&quot;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token.Error, &#x27;\\&#x27;), (Token (type: builtins.list) [0.32ms median]</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#6 <code>sqlparse.engine.filter_stack.FilterStack.&lt;stateful_chain&gt;[stateful chain: enable_grouping, run]</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on [[&lt;Statement &#x27;RE a I...&#x27; at 0xADDR&gt;]] (builtins.list): [0][0].tokens[0] (&quot;&lt;Name &#x27;RE&#x27; at 0xADDR&gt;&quot; -&gt; &quot;&lt;Name &#x27;RE&#x27; at 0xADDR&gt;&quot;); [0][0].tokens[1] (&quot;&lt;Whitespace &#x27; &#x27; at 0xADDR&gt;&quot; -&gt; &quot;&lt;Whitespace &#x27; &#x27; at 0xADDR&gt;&quot;); [0][0].tokens[2] (&quot;&lt;Name &#x27;a&#x27; at 0xADDR&gt;&quot; -&gt; &quot;&lt;Name &#x27;a&#x27; at 0xADDR&gt;&quot;)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>stateful_call_chain</code>)</div>
+                      <pre><code>obj = FilterStack(); obj.run(&#x27;a&#x27;); obj.run(&#x27;SELECT 1 WHERE a IN (1);&#x27;); obj.run(b&#x27;a&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (3 steps)</div>
+                      <pre><code>obj = FilterStack(); obj.run(&#x27;RE a IN (1);&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 0.4.3 Outcome</div>
+                      <pre><code>RETURN [[&lt;Statement &#x27;RE a I...&#x27; at 0xADDR&gt;]] (type: builtins.list)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 0.4.4 Outcome</div>
+                      <pre><code>RETURN [[&lt;Statement &#x27;RE a I...&#x27; at 0xADDR&gt;]] (type: builtins.list)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#7 <code>sqlparse.format(sql, encoding = None, **options)</code></span>
+                    <span class="tag tag-drift">latency_regression / 114.0x_latency_shift</span>
+                  </div>
+                  <p class="summary">Latency shift (114.0x faster in v2 / pathological in v1): v1 median 41.11ms -&gt; v2 median 0.36ms</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>baseline_required</code>)</div>
+                      <pre><code>format(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>format(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 0.4.3 Outcome</div>
+                      <pre><code>RETURN &quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot; (type: builtins.str) [41.11ms median]</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 0.4.4 Outcome</div>
+                      <pre><code>RETURN &quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot; (type: builtins.str) [0.36ms median]</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#8 <code>sqlparse.format(sql, encoding = None, **options)</code></span>
+                    <span class="tag tag-drift">latency_regression / 111.0x_latency_shift</span>
+                  </div>
+                  <p class="summary">Latency shift (111.0x faster in v2 / pathological in v1): v1 median 40.74ms -&gt; v2 median 0.37ms</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>format(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;, None)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>format(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;, None)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 0.4.3 Outcome</div>
+                      <pre><code>RETURN &quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot; (type: builtins.str) [40.74ms median]</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 0.4.4 Outcome</div>
+                      <pre><code>RETURN &quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot; (type: builtins.str) [0.37ms median]</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#9 <code>sqlparse.format(sql, encoding = None, **options)</code></span>
+                    <span class="tag tag-drift">latency_regression / 115.7x_latency_shift</span>
+                  </div>
+                  <p class="summary">Latency shift (115.7x faster in v2 / pathological in v1): v1 median 41.09ms -&gt; v2 median 0.35ms</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>format(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;, &#x27;&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>format(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;, &#x27;&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 0.4.3 Outcome</div>
+                      <pre><code>RETURN &quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot; (type: builtins.str) [41.09ms median]</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 0.4.4 Outcome</div>
+                      <pre><code>RETURN &quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot; (type: builtins.str) [0.35ms median]</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#10 <code>sqlparse.format(sql, encoding = None, **options)</code></span>
+                    <span class="tag tag-drift">latency_regression / 109.7x_latency_shift</span>
+                  </div>
+                  <p class="summary">Latency shift (109.7x faster in v2 / pathological in v1): v1 median 40.79ms -&gt; v2 median 0.37ms</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>format(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;, &#x27;_diff&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>format(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;, &#x27;_diff&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 0.4.3 Outcome</div>
+                      <pre><code>RETURN &quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot; (type: builtins.str) [40.79ms median]</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 0.4.4 Outcome</div>
+                      <pre><code>RETURN &quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot; (type: builtins.str) [0.37ms median]</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#11 <code>sqlparse.format(sql, encoding = None, **options)</code></span>
+                    <span class="tag tag-drift">latency_regression / 111.4x_latency_shift</span>
+                  </div>
+                  <p class="summary">Latency shift (111.4x faster in v2 / pathological in v1): v1 median 41.14ms -&gt; v2 median 0.37ms</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>format(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;, &#x27; &#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>format(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;, &#x27; &#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 0.4.3 Outcome</div>
+                      <pre><code>RETURN &quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot; (type: builtins.str) [41.14ms median]</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 0.4.4 Outcome</div>
+                      <pre><code>RETURN &quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot; (type: builtins.str) [0.37ms median]</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#12 <code>sqlparse.parse(sql, encoding = None)</code></span>
+                    <span class="tag tag-drift">latency_regression / 46.0x_latency_shift</span>
+                  </div>
+                  <p class="summary">Latency shift (46.0x faster in v2 / pathological in v1): v1 median 42.03ms -&gt; v2 median 0.91ms</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>baseline_required</code>)</div>
+                      <pre><code>parse(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>parse(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 0.4.3 Outcome</div>
+                      <pre><code>RETURN (&lt;Statement &#x27;&#x27;\\\\\...&#x27; at 0xADDR&gt;,) (type: builtins.tuple) [42.03ms median]</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 0.4.4 Outcome</div>
+                      <pre><code>RETURN (&lt;Statement &#x27;&#x27;\\\\\...&#x27; at 0xADDR&gt;,) (type: builtins.tuple) [0.91ms median]</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#13 <code>sqlparse.parse(sql, encoding = None)</code></span>
+                    <span class="tag tag-drift">latency_regression / 48.4x_latency_shift</span>
+                  </div>
+                  <p class="summary">Latency shift (48.4x faster in v2 / pathological in v1): v1 median 41.06ms -&gt; v2 median 0.85ms</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>parse(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;, None)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>parse(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;, None)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 0.4.3 Outcome</div>
+                      <pre><code>RETURN (&lt;Statement &#x27;&#x27;\\\\\...&#x27; at 0xADDR&gt;,) (type: builtins.tuple) [41.06ms median]</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 0.4.4 Outcome</div>
+                      <pre><code>RETURN (&lt;Statement &#x27;&#x27;\\\\\...&#x27; at 0xADDR&gt;,) (type: builtins.tuple) [0.85ms median]</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#14 <code>sqlparse.parse(sql, encoding = None)</code></span>
+                    <span class="tag tag-drift">latency_regression / 50.4x_latency_shift</span>
+                  </div>
+                  <p class="summary">Latency shift (50.4x faster in v2 / pathological in v1): v1 median 42.24ms -&gt; v2 median 0.84ms</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>parse(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;, &#x27;&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>parse(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;, &#x27;&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 0.4.3 Outcome</div>
+                      <pre><code>RETURN (&lt;Statement &#x27;&#x27;\\\\\...&#x27; at 0xADDR&gt;,) (type: builtins.tuple) [42.24ms median]</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 0.4.4 Outcome</div>
+                      <pre><code>RETURN (&lt;Statement &#x27;&#x27;\\\\\...&#x27; at 0xADDR&gt;,) (type: builtins.tuple) [0.84ms median]</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#15 <code>sqlparse.parse(sql, encoding = None)</code></span>
+                    <span class="tag tag-drift">return_value_drift / value_or_type_mismatch</span>
+                  </div>
+                  <p class="summary">Return object state drift on (&lt;Statement &#x27;IN&#x27; at 0xADDR&gt;,) (builtins.tuple): attribute &#x27;[0].tokens[0].is_keyword&#x27; changed (False -&gt; True); attribute &#x27;[0].tokens[0].parent&#x27; changed (&quot;&lt;Statement &#x27;IN&#x27; at 0xADDR&gt;&quot; -&gt; &quot;&lt;Statement &#x27;IN&#x27; at 0xADDR&gt;&quot;); attribute &#x27;[0].tokens[0].ttype&#x27; changed (&#x27;Token.Operator.Comparison&#x27; -&gt; &#x27;Token.Keyword&#x27;)</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_required</code>)</div>
+                      <pre><code>parse(&#x27;SELECT 1 WHERE a IN (1);&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (5 steps)</div>
+                      <pre><code>parse(&#x27;IN&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 0.4.3 Outcome</div>
+                      <pre><code>RETURN (&lt;Statement &#x27;IN&#x27; at 0xADDR&gt;,) (type: builtins.tuple)</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 0.4.4 Outcome</div>
+                      <pre><code>RETURN (&lt;Statement &#x27;IN&#x27; at 0xADDR&gt;,) (type: builtins.tuple)</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#16 <code>sqlparse.parse(sql, encoding = None)</code></span>
+                    <span class="tag tag-drift">latency_regression / 50.2x_latency_shift</span>
+                  </div>
+                  <p class="summary">Latency shift (50.2x faster in v2 / pathological in v1): v1 median 41.68ms -&gt; v2 median 0.83ms</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>parse(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;, &#x27; &#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>parse(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;, &#x27; &#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 0.4.3 Outcome</div>
+                      <pre><code>RETURN (&lt;Statement &#x27;&#x27;\\\\\...&#x27; at 0xADDR&gt;,) (type: builtins.tuple) [41.68ms median]</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 0.4.4 Outcome</div>
+                      <pre><code>RETURN (&lt;Statement &#x27;&#x27;\\\\\...&#x27; at 0xADDR&gt;,) (type: builtins.tuple) [0.83ms median]</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#17 <code>sqlparse.parsestream(stream, encoding = None)</code></span>
+                    <span class="tag tag-drift">latency_regression / 65.2x_latency_shift</span>
+                  </div>
+                  <p class="summary">Latency shift (65.2x faster in v2 / pathological in v1): v1 median 49.26ms -&gt; v2 median 0.76ms</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_required</code>)</div>
+                      <pre><code>parsestream(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>parsestream(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 0.4.3 Outcome</div>
+                      <pre><code>RETURN [&lt;Statement &#x27;&#x27;\\\\\...&#x27; at 0xADDR&gt;] (type: builtins.list) [49.26ms median]</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 0.4.4 Outcome</div>
+                      <pre><code>RETURN [&lt;Statement &#x27;&#x27;\\\\\...&#x27; at 0xADDR&gt;] (type: builtins.list) [0.76ms median]</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#18 <code>sqlparse.split(sql, encoding = None)</code></span>
+                    <span class="tag tag-drift">latency_regression / 141.6x_latency_shift</span>
+                  </div>
+                  <p class="summary">Latency shift (141.6x faster in v2 / pathological in v1): v1 median 45.96ms -&gt; v2 median 0.32ms</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>baseline_required</code>)</div>
+                      <pre><code>split(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>split(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 0.4.3 Outcome</div>
+                      <pre><code>RETURN [&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;] (type: builtins.list) [45.96ms median]</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 0.4.4 Outcome</div>
+                      <pre><code>RETURN [&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;] (type: builtins.list) [0.32ms median]</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#19 <code>sqlparse.split(sql, encoding = None)</code></span>
+                    <span class="tag tag-drift">latency_regression / 149.2x_latency_shift</span>
+                  </div>
+                  <p class="summary">Latency shift (149.2x faster in v2 / pathological in v1): v1 median 48.69ms -&gt; v2 median 0.33ms</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>split(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;, None)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>split(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;, None)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 0.4.3 Outcome</div>
+                      <pre><code>RETURN [&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;] (type: builtins.list) [48.69ms median]</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 0.4.4 Outcome</div>
+                      <pre><code>RETURN [&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;] (type: builtins.list) [0.33ms median]</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#20 <code>sqlparse.split(sql, encoding = None)</code></span>
+                    <span class="tag tag-drift">latency_regression / 150.6x_latency_shift</span>
+                  </div>
+                  <p class="summary">Latency shift (150.6x faster in v2 / pathological in v1): v1 median 48.86ms -&gt; v2 median 0.32ms</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>split(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;, &#x27;&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>split(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;, &#x27;&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 0.4.3 Outcome</div>
+                      <pre><code>RETURN [&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;] (type: builtins.list) [48.86ms median]</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 0.4.4 Outcome</div>
+                      <pre><code>RETURN [&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;] (type: builtins.list) [0.32ms median]</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#21 <code>sqlparse.split(sql, encoding = None)</code></span>
+                    <span class="tag tag-drift">latency_regression / 139.0x_latency_shift</span>
+                  </div>
+                  <p class="summary">Latency shift (139.0x faster in v2 / pathological in v1): v1 median 45.45ms -&gt; v2 median 0.33ms</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>split(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;, &#x27; &#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>split(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;, &#x27; &#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 0.4.3 Outcome</div>
+                      <pre><code>RETURN [&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;] (type: builtins.list) [45.45ms median]</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 0.4.4 Outcome</div>
+                      <pre><code>RETURN [&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;] (type: builtins.list) [0.33ms median]</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header">
+                    <span class="card-title">#22 <code>sqlparse.split(sql, encoding = None)</code></span>
+                    <span class="tag tag-drift">latency_regression / 154.0x_latency_shift</span>
+                  </div>
+                  <p class="summary">Latency shift (154.0x faster in v2 / pathological in v1): v1 median 50.45ms -&gt; v2 median 0.33ms</p>
+                  <div class="grid-two">
+                    <div class="box">
+                      <div class="box-label">Original Synthesized Call (<code>edge_sweep_positional</code>)</div>
+                      <pre><code>split(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;, &#x27;\t\r\n&#x27;)</code></pre>
+                    </div>
+                    <div class="box">
+                      <div class="box-label">Minimal Shrunk Counterexample (0 steps)</div>
+                      <pre><code>split(&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;, &#x27;\t\r\n&#x27;)</code></pre>
+                    </div>
+                  </div>
+                  <div class="grid-two">
+                    <div class="box v1-box">
+                      <div class="box-label">Version 0.4.3 Outcome</div>
+                      <pre><code>RETURN [&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;] (type: builtins.list) [50.45ms median]</code></pre>
+                    </div>
+                    <div class="box v2-box">
+                      <div class="box-label">Version 0.4.4 Outcome</div>
+                      <pre><code>RETURN [&quot;&#x27;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&quot;] (type: builtins.list) [0.33ms median]</code></pre>
+                    </div>
+                  </div>
+                </div>
+                
+</div>
+</body>
+</html>
